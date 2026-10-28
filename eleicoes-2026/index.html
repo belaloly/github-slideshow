@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>A virada de 2026</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Os números do TSE que explicam como Lula virou no 2º turno da eleição presidencial de 2026: de onde vieram os votos e por que a conta fecha.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:opsz,wght@7..72,400..700&display=swap">
+<style>
+/* Layout: relatório didático em coluna única de leitura (~68ch), figuras mais largas, nav de seções fixa no topo.
+   Cores dos candidatos vêm da paleta categórica validada (laranja = Lula, azul = Flávio); fontes dos votos em aqua/amarelo/magenta. */
+:root {
+  --bg: #f3f4f7;
+  --surface: #fcfcfd;
+  --ink: #12151b;
+  --ink-2: #474d59;
+  --muted: #757b88;
+  --rule: #dcdfe5;
+  --track: #e6e8ed;
+  --mark: #fff0b3;
+  --lula: #eb6834;
+  --flavio: #2a78d6;
+  --outros: #a3a8b2;
+  --src-elim: #1baf7a;
+  --src-bn: #eda100;
+  --src-comp: #e87ba4;
+  --ok: #006300;
+  --font-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Literata", Georgia, "Times New Roman", serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --step--1: 0.8125rem;
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.6rem;
+  --step-3: clamp(2.1rem, 5.2vw, 3.4rem);
+  --measure: 68ch;
+  --wide: 1060px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0f1115; --surface: #171a20; --ink: #eceef2; --ink-2: #b9bec8; --muted: #8a909c;
+    --rule: #2a2f38; --track: #252a33; --mark: rgba(237, 161, 0, 0.24);
+    --lula: #d95926; --flavio: #3987e5; --outros: #5c626d;
+    --src-elim: #199e70; --src-bn: #c98500; --src-comp: #d55181; --ok: #0ca30c;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f1115; --surface: #171a20; --ink: #eceef2; --ink-2: #b9bec8; --muted: #8a909c;
+  --rule: #2a2f38; --track: #252a33; --mark: rgba(237, 161, 0, 0.24);
+  --lula: #d95926; --flavio: #3987e5; --outros: #5c626d;
+  --src-elim: #199e70; --src-bn: #c98500; --src-comp: #d55181; --ok: #0ca30c;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 64px); }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.62;
+  -webkit-text-size-adjust: 100%;
+}
+body::before {
+  content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px);
+  z-index: 10; background: var(--surface);
+}
+.wrap {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.prose { max-width: var(--measure); }
+.prose > * + * { margin-top: 1em; }
+p { margin: 0; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--flavio); outline-offset: 2px; border-radius: 2px; }
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; line-height: 1.12; }
+h2 { font-size: var(--step-2); font-weight: 750; font-stretch: 108%; letter-spacing: -0.01em; }
+h3 { font-size: var(--step-1); font-weight: 700; }
+.eyebrow {
+  font-family: var(--font-display); font-size: var(--step--1); font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+}
+.num { font-family: var(--font-data); font-size: 0.92em; white-space: nowrap; }
+mark { background: var(--mark); color: inherit; padding: 0 0.15em; border-radius: 2px; }
+.small { font-size: var(--step--1); color: var(--ink-2); line-height: 1.5; }
+
+/* Cabeçalho */
+.masthead { background: var(--surface); border-bottom: 1px solid var(--rule); }
+.masthead .wrap { padding-block: 40px 32px; display: grid; gap: 20px; }
+.masthead h1 { font-size: var(--step-3); font-weight: 800; font-stretch: 112%; letter-spacing: -0.02em; }
+.lede { font-size: 1.15rem; max-width: 62ch; color: var(--ink-2); }
+.lede strong { color: var(--ink); }
+.disclaimer {
+  font-family: var(--font-display); font-size: var(--step--1); color: var(--ink-2);
+  border-left: 3px solid var(--rule); padding: 2px 0 2px 12px; max-width: 70ch;
+}
+
+/* Navegação de seções */
+.sections {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5;
+  background: var(--surface); border-bottom: 1px solid var(--rule);
+}
+.sections .wrap { overflow-x: auto; scrollbar-width: none; }
+.sections .wrap::-webkit-scrollbar { display: none; }
+.sections ol {
+  list-style: none; margin: 0; padding: 0; display: flex; gap: 4px; white-space: nowrap;
+  font-family: var(--font-display); font-size: 0.875rem; font-weight: 600;
+}
+.sections a {
+  display: block; padding: 12px 10px; text-decoration: none; color: var(--ink-2);
+  border-bottom: 2px solid transparent;
+}
+.sections a:hover, .sections a[aria-current="true"] { color: var(--ink); border-bottom-color: var(--ink); }
+
+main section { padding-block: 56px 8px; }
+main section > .wrap { display: grid; gap: 24px; }
+.section-head { display: grid; gap: 8px; max-width: var(--measure); }
+
+/* Figuras */
+figure { margin: 0; background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 20px; min-width: 0; }
+figcaption { font-family: var(--font-display); font-size: var(--step--1); color: var(--muted); margin-top: 14px; line-height: 1.45; }
+.fig-title { font-family: var(--font-display); font-weight: 700; font-size: 1rem; margin-bottom: 16px; }
+
+/* Barras 100% (placar do hero) */
+.duel { display: grid; gap: 22px; }
+.duel-row { display: grid; gap: 6px; }
+.duel-meta { display: flex; justify-content: space-between; gap: 12px; font-family: var(--font-display); font-size: 0.95rem; }
+.duel-meta b { font-weight: 700; }
+.duel-meta .round { font-size: var(--step--1); color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; }
+.duel-bar { position: relative; display: flex; gap: 2px; height: 24px; }
+.seg { height: 100%; min-width: 2px; }
+.seg:first-child { border-radius: 4px 0 0 4px; }
+.seg:last-child { border-radius: 0 4px 4px 0; }
+.seg[data-tip] { cursor: default; }
+.half { position: absolute; left: 50%; top: -6px; bottom: -6px; width: 0; border-left: 1px solid var(--ink); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-family: var(--font-display); font-size: var(--step--1); color: var(--ink-2); }
+.key { display: inline-flex; align-items: center; gap: 6px; }
+.sw { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+
+.figures { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.figure-tile { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 16px; display: grid; gap: 4px; align-content: start; }
+.figure-tile .label { font-family: var(--font-display); font-size: var(--step--1); color: var(--ink-2); }
+.figure-tile .value { font-family: var(--font-display); font-weight: 750; font-size: 1.7rem; line-height: 1.1; }
+.figure-tile .value .unit { font-size: 1rem; font-weight: 600; color: var(--ink-2); }
+@media (max-width: 720px) { .figures { grid-template-columns: 1fr; } }
+
+/* Tabelas */
+.tables { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 860px) { .tables { grid-template-columns: 1fr; } }
+.scroll-x { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+caption { text-align: left; font-family: var(--font-display); font-weight: 700; font-size: 1rem; padding-bottom: 10px; }
+th, td { padding: 7px 8px; border-bottom: 1px solid var(--rule); text-align: left; vertical-align: baseline; }
+th { font-family: var(--font-display); font-weight: 600; font-size: var(--step--1); color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+td.r, th.r { text-align: right; }
+td.r { font-family: var(--font-data); font-variant-numeric: tabular-nums; font-size: 0.85rem; white-space: nowrap; }
+tbody tr.total td { font-weight: 600; border-top: 1px solid var(--ink); }
+tbody tr.aux td { color: var(--ink-2); }
+.cand { display: inline-flex; align-items: center; gap: 8px; }
+.dot { width: 9px; height: 9px; border-radius: 50%; flex: none; background: var(--outros); }
+
+/* Equação */
+.ledger {
+  font-family: var(--font-data); font-size: 0.9rem; background: var(--surface); border: 1px solid var(--rule);
+  border-radius: 6px; padding: 16px 18px; overflow-x: auto; display: grid; gap: 2px; max-width: 640px;
+}
+.ledger .line { display: grid; grid-template-columns: 1.6em minmax(0, 1fr) auto; gap: 8px; align-items: baseline; white-space: nowrap; }
+.ledger .op { color: var(--muted); }
+.ledger .sum { border-top: 1px solid var(--ink); margin-top: 6px; padding-top: 6px; font-weight: 600; }
+.ledger .v { font-variant-numeric: tabular-nums; text-align: right; }
+
+/* Barras de fluxo */
+.flow { display: grid; gap: 18px; }
+.flow-row { display: grid; gap: 6px; }
+.flow-row .row-label { font-family: var(--font-display); font-weight: 600; font-size: 0.95rem; }
+.flow-bar { display: flex; gap: 2px; height: 24px; }
+
+/* Medidor (limiar) */
+.meters { display: grid; gap: 26px; }
+.meter { display: grid; gap: 8px; }
+.meter-head { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 4px 12px; font-family: var(--font-display); font-size: 0.95rem; }
+.meter-track { position: relative; height: 24px; background: var(--track); border-radius: 4px; margin-top: 18px; }
+.meter-fill { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 4px; }
+.meter-need { position: absolute; top: -8px; bottom: -8px; width: 0; border-left: 2px solid var(--ink); }
+.meter-need span { position: absolute; bottom: calc(100% + 2px); transform: translateX(-50%); font-family: var(--font-display); font-size: 0.75rem; color: var(--ink); white-space: nowrap; }
+.meter-scale { display: flex; justify-content: space-between; font-family: var(--font-data); font-size: 0.72rem; color: var(--muted); }
+
+.math {
+  font-family: var(--font-data); font-size: 0.92rem; background: var(--surface); border: 1px solid var(--rule);
+  border-radius: 6px; padding: 14px 18px; overflow-x: auto; white-space: pre; line-height: 1.8; max-width: 640px;
+}
+
+.note { border-left: 3px solid var(--ink); padding: 2px 0 2px 14px; max-width: var(--measure); }
+.note h3 { font-size: 1rem; margin-bottom: 4px; }
+
+/* Simulador */
+.sim { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 860px) { .sim { grid-template-columns: 1fr; } }
+.controls { display: grid; gap: 18px; }
+.control { display: grid; gap: 6px; }
+.control label { font-family: var(--font-display); font-size: 0.92rem; font-weight: 600; display: flex; justify-content: space-between; gap: 12px; }
+.control output { font-family: var(--font-data); font-weight: 500; white-space: nowrap; }
+.control .hint { font-family: var(--font-display); font-size: var(--step--1); color: var(--muted); }
+input[type="range"] { width: 100%; accent-color: var(--ink); }
+.presets { display: flex; flex-wrap: wrap; gap: 8px; }
+button {
+  font-family: var(--font-display); font-size: 0.85rem; font-weight: 600; color: var(--ink);
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 999px; padding: 7px 14px; cursor: pointer;
+}
+button:hover { border-color: var(--ink); }
+.result { display: grid; gap: 14px; }
+.result .verdict { font-family: var(--font-display); font-weight: 750; font-size: 1.4rem; line-height: 1.2; }
+.result dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 16px; margin: 0; font-size: 0.92rem; }
+.result dt { font-family: var(--font-display); color: var(--ink-2); }
+.result dd { margin: 0; font-family: var(--font-data); text-align: right; font-variant-numeric: tabular-nums; }
+
+/* Estados */
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font-family: var(--font-display); font-size: 0.88rem; background: var(--surface); border: 1px solid var(--rule); border-radius: 999px; padding: 6px 12px; }
+.chip b { font-weight: 750; }
+.hbars { display: grid; gap: 10px; }
+.hbar { display: grid; grid-template-columns: minmax(0, 12.5rem) minmax(0, 1fr); gap: 12px; align-items: center; }
+.hbar .name { font-family: var(--font-display); font-size: 0.9rem; line-height: 1.25; }
+.hbar .track { display: flex; align-items: center; gap: 8px; min-width: 0; }
+.hbar .fill { height: 20px; border-radius: 0 4px 4px 0; background: var(--lula); min-width: 2px; }
+.hbar .val { font-family: var(--font-data); font-size: 0.82rem; white-space: nowrap; color: var(--ink-2); }
+@media (max-width: 560px) { .hbar { grid-template-columns: 1fr; gap: 4px; } }
+.two { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+@media (max-width: 860px) { .two { grid-template-columns: 1fr; } }
+
+/* Dúvidas */
+.claims { display: grid; gap: 16px; }
+.claim { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 20px; display: grid; gap: 12px; min-width: 0; }
+.claim h3 { font-size: 1.15rem; }
+.claim .tag { font-family: var(--font-display); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+.claim .body { display: grid; gap: 10px; max-width: var(--measure); }
+.verdict-line { font-family: var(--font-display); font-weight: 700; display: flex; gap: 8px; align-items: baseline; }
+.verdict-line::before { content: "="; font-family: var(--font-data); color: var(--muted); }
+.scale-compare { display: grid; gap: 10px; margin-top: 4px; }
+.scale-compare .lbl { font-family: var(--font-display); font-size: 0.85rem; display: flex; justify-content: space-between; gap: 12px; }
+.scale-compare .bar { height: 20px; border-radius: 0 4px 4px 0; }
+.status { background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--ink); border-radius: 6px; padding: 16px 18px; max-width: 820px; display: grid; gap: 8px; }
+
+/* Limites, exercícios, fontes */
+.list { margin: 0; padding-left: 1.2em; display: grid; gap: 10px; max-width: var(--measure); }
+details { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 18px; max-width: 820px; }
+details + details { margin-top: 10px; }
+summary { cursor: pointer; font-family: var(--font-display); font-weight: 600; line-height: 1.4; }
+details > div { margin-top: 10px; display: grid; gap: 8px; }
+.sources { columns: 2 22rem; column-gap: 32px; font-size: 0.92rem; padding-left: 1.2em; margin: 0; }
+.sources li { break-inside: avoid; margin-bottom: 8px; }
+
+footer { margin-top: 64px; border-top: 1px solid var(--rule); background: var(--surface); }
+footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-size: var(--step--1); color: var(--muted); display: grid; gap: 6px; }
+
+/* Tooltip */
+.tip {
+  position: fixed; z-index: 20; pointer-events: none; max-width: 280px;
+  background: var(--ink); color: var(--surface); font-family: var(--font-display); font-size: 0.82rem; line-height: 1.4;
+  padding: 8px 10px; border-radius: 4px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div class="wrap">
+    <p class="eyebrow">Eleição presidencial 2026 · 1º turno em 4/10 · 2º turno em 25/10</p>
+    <h1>A virada de 2026, voto a voto</h1>
+    <p class="lede">
+      Flávio Bolsonaro (PL) terminou o 1º turno com <strong class="num">2.224.965</strong> votos a mais que Lula (PT).
+      No 2º turno, Lula venceu por <strong class="num">4.430.191</strong>. Em todas as eleições presidenciais com 2º turno desde 1989,
+      quem liderou o 1º turno ganhou o 2º. 2026 é a primeira exceção.
+      Esta página mostra os números da totalização do TSE, de onde vieram os votos e por que a conta fecha.
+    </p>
+
+    <figure aria-labelledby="duel-cap">
+      <div class="duel" role="img" aria-label="1º turno: Lula 45,16%, outros 7,81%, Flávio 47,03% dos votos válidos. 2º turno: Lula 51,79%, Flávio 48,21%.">
+        <div class="duel-row">
+          <div class="duel-meta"><span><span class="round">1º turno</span></span></div>
+          <div class="duel-meta"><span>Lula <b class="num">45,16%</b></span><span>Flávio <b class="num">47,03%</b></span></div>
+          <div class="duel-bar">
+            <div class="seg" style="width:45.16%;background:var(--lula)" data-tip="Lula (PT), 1º turno: 53.879.538 votos, 45,16% dos válidos"></div>
+            <div class="seg" style="width:7.81%;background:var(--outros)" data-tip="Outros 10 candidatos, 1º turno: 9.316.747 votos, 7,81% dos válidos"></div>
+            <div class="seg" style="width:47.03%;background:var(--flavio)" data-tip="Flávio Bolsonaro (PL), 1º turno: 56.104.503 votos, 47,03% dos válidos"></div>
+            <span class="half" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="duel-row">
+          <div class="duel-meta"><span><span class="round">2º turno</span></span></div>
+          <div class="duel-meta"><span>Lula <b class="num">51,79%</b></span><span>Flávio <b class="num">48,21%</b></span></div>
+          <div class="duel-bar">
+            <div class="seg" style="width:51.79%;background:var(--lula)" data-tip="Lula (PT), 2º turno: 64.256.232 votos, 51,79% dos válidos"></div>
+            <div class="seg" style="width:48.21%;background:var(--flavio)" data-tip="Flávio Bolsonaro (PL), 2º turno: 59.826.041 votos, 48,21% dos válidos"></div>
+            <span class="half" aria-hidden="true"></span>
+          </div>
+        </div>
+        <div class="legend">
+          <span class="key"><span class="sw" style="background:var(--lula)"></span>Lula (PT)</span>
+          <span class="key"><span class="sw" style="background:var(--outros)"></span>10 outros candidatos (7,81% no 1º turno)</span>
+          <span class="key"><span class="sw" style="background:var(--flavio)"></span>Flávio Bolsonaro (PL)</span>
+          <span class="key"><span class="sw" style="background:none;border-left:1px solid var(--ink);border-radius:0;width:2px"></span>linha de 50%</span>
+        </div>
+      </div>
+      <figcaption id="duel-cap">Percentual dos votos válidos (sem brancos e nulos), com 100% das seções totalizadas.</figcaption>
+    </figure>
+
+    <div class="figures">
+      <div class="figure-tile"><span class="label">Vantagem de Flávio no 1º turno</span><span class="value">2.224.965</span></div>
+      <div class="figure-tile"><span class="label">Vantagem de Lula no 2º turno</span><span class="value">4.430.191</span></div>
+      <div class="figure-tile"><span class="label">Fatia de Lula nos votos que os dois ganharam entre os turnos</span><span class="value">73,6<span class="unit">%</span></span></div>
+    </div>
+
+    <p class="disclaimer">Este não é um site do TSE. Os números são da totalização oficial, publicada pelo TSE e reproduzida pela imprensa,
+      e foram conferidos por soma: em cada turno, votos válidos + brancos + nulos fecham exatamente com o comparecimento.
+      Veja <a href="#fontes">Fontes e método</a>.</p>
+  </div>
+</header>
+
+<nav class="sections" aria-label="Seções">
+  <div class="wrap">
+    <ol>
+      <li><a href="#placar">Placar</a></li>
+      <li><a href="#conta">A conta</a></li>
+      <li><a href="#limiar">Quanto precisava</a></li>
+      <li><a href="#simulador">Simulador</a></li>
+      <li><a href="#estados">Estados</a></li>
+      <li><a href="#duvidas">Dúvidas</a></li>
+      <li><a href="#limites">Limites</a></li>
+      <li><a href="#exercicios">Exercícios</a></li>
+      <li><a href="#fontes">Fontes</a></li>
+    </ol>
+  </div>
+</nav>
+
+<main>
+
+<!-- PLACAR -->
+<section id="placar">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Resultado oficial</p>
+      <h2>O placar dos dois turnos</h2>
+      <p>Doze candidatos disputaram o 1º turno. Nenhum passou de 50% dos votos válidos, então os dois primeiros foram para o 2º turno, como manda o artigo 77 da Constituição.</p>
+    </div>
+    <div class="tables">
+      <div class="scroll-x">
+        <table>
+          <caption>1º turno · 4 de outubro de 2026</caption>
+          <thead><tr><th>Candidato</th><th class="r">Votos</th><th class="r">% válidos</th></tr></thead>
+          <tbody>
+            <tr><td><span class="cand"><span class="dot" style="background:var(--flavio)"></span>Flávio Bolsonaro (PL)</span></td><td class="r">56.104.503</td><td class="r">47,03</td></tr>
+            <tr><td><span class="cand"><span class="dot" style="background:var(--lula)"></span>Lula (PT)</span></td><td class="r">53.879.538</td><td class="r">45,16</td></tr>
+            <tr><td><span class="cand"><span class="dot"></span>Augusto Cury (Avante)</span></td><td class="r">3.448.569</td><td class="r">2,89</td></tr>
+            <tr><td><span class="cand"><span class="dot"></span>Renan Santos (Missão)</span></td><td class="r">2.675.887</td><td class="r">2,24</td></tr>
+            <tr><td><span class="cand"><span class="dot"></span>Ronaldo Caiado (PSD)</span></td><td class="r">2.605.148</td><td class="r">2,18</td></tr>
+            <tr><td><span class="cand"><span class="dot"></span>Romeu Zema (Novo)</span></td><td class="r">326.488</td><td class="r">0,27</td></tr>
+            <tr><td><span class="cand"><span class="dot"></span>Samara (UP)</span></td><td class="r">122.911</td><td class="r">0,10</td></tr>
+            <tr><td><span class="cand"><span class="dot"></span>Hertz Dias (PSTU)</span></td><td class="r">43.103</td><td class="r">0,04</td></tr>
+            <tr><td><span class="cand"><span class="dot"></span>Clariana Barão (DC)</span></td><td class="r">40.043</td><td class="r">0,03</td></tr>
+            <tr><td><span class="cand"><span class="dot"></span>Edmilson Costa (PCB)</span></td><td class="r">22.693</td><td class="r">0,02</td></tr>
+            <tr><td><span class="cand"><span class="dot"></span>Wilson Grassi (Democrata)</span></td><td class="r">16.881</td><td class="r">0,01</td></tr>
+            <tr><td><span class="cand"><span class="dot"></span>Rui Costa Pimenta (PCO)</span></td><td class="r">15.024</td><td class="r">0,01</td></tr>
+            <tr class="total"><td>Votos válidos</td><td class="r">119.300.788</td><td class="r">100</td></tr>
+            <tr class="aux"><td>Brancos (1,84% dos votos)</td><td class="r">2.300.798</td><td class="r"></td></tr>
+            <tr class="aux"><td>Nulos (2,93% dos votos)</td><td class="r">3.674.249</td><td class="r"></td></tr>
+            <tr class="aux"><td>Comparecimento (78,92%)</td><td class="r">125.275.835</td><td class="r"></td></tr>
+            <tr class="aux"><td>Abstenção (21,08%)</td><td class="r">33.469.244</td><td class="r"></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="scroll-x">
+        <table>
+          <caption>2º turno · 25 de outubro de 2026</caption>
+          <thead><tr><th>Candidato</th><th class="r">Votos</th><th class="r">% válidos</th></tr></thead>
+          <tbody>
+            <tr><td><span class="cand"><span class="dot" style="background:var(--lula)"></span>Lula (PT)</span></td><td class="r">64.256.232</td><td class="r">51,79</td></tr>
+            <tr><td><span class="cand"><span class="dot" style="background:var(--flavio)"></span>Flávio Bolsonaro (PL)</span></td><td class="r">59.826.041</td><td class="r">48,21</td></tr>
+            <tr class="total"><td>Votos válidos</td><td class="r">124.082.273</td><td class="r">100</td></tr>
+            <tr class="aux"><td>Brancos (1,12% dos votos)</td><td class="r">1.430.496</td><td class="r"></td></tr>
+            <tr class="aux"><td>Nulos (2,12% dos votos)</td><td class="r">2.723.305</td><td class="r"></td></tr>
+            <tr class="aux"><td>Comparecimento (80,78%)</td><td class="r">128.236.074</td><td class="r"></td></tr>
+            <tr class="aux"><td>Abstenção (19,22%)</td><td class="r">30.509.005</td><td class="r"></td></tr>
+          </tbody>
+        </table>
+        <p class="small" style="margin-top:12px">Brancos e nulos em % do total de votos. Comparecimento e abstenção em % do eleitorado de 158.745.079 pessoas considerado na totalização.
+          A abstenção do 1º turno foi a maior desde 1998; a do 2º turno, a menor numa eleição presidencial desde 2006.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- A CONTA -->
+<section id="conta">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">De onde vieram os votos</p>
+      <h2>A conta fecha, voto a voto</h2>
+      <p>Entre os turnos, Lula ganhou <span class="num">10.376.694</span> votos e Flávio, <span class="num">3.721.538</span>.
+        Juntos, <mark class="num">14.098.232</mark> votos a mais. Só existem três lugares de onde esses votos podem ter saído, e eles somam exatamente esse valor.</p>
+    </div>
+
+    <div class="ledger" role="table" aria-label="Origem dos votos novos dos finalistas">
+      <div class="line" role="row"><span class="op"></span><span role="cell">Votos dos 10 candidatos eliminados no 1º turno</span><span class="v" role="cell">9.316.747</span></div>
+      <div class="line" role="row"><span class="op">+</span><span role="cell">Queda de brancos e nulos (5.975.047 → 4.153.801)</span><span class="v" role="cell">1.821.246</span></div>
+      <div class="line" role="row"><span class="op">+</span><span role="cell">Aumento do comparecimento (125.275.835 → 128.236.074)</span><span class="v" role="cell">2.960.239</span></div>
+      <div class="line sum" role="row"><span class="op">=</span><span role="cell">Votos que Lula e Flávio ganharam juntos</span><span class="v" role="cell">14.098.232</span></div>
+    </div>
+
+    <figure>
+      <p class="fig-title">De onde vieram e para onde foram os 14.098.232 votos novos</p>
+      <div class="flow">
+        <div class="flow-row">
+          <span class="row-label">Origem (saldo)</span>
+          <div class="flow-bar">
+            <div class="seg" style="width:66.08%;background:var(--src-elim)" data-tip="Votos dos 10 eliminados no 1º turno: 9.316.747 (66,1%)"></div>
+            <div class="seg" style="width:12.92%;background:var(--src-bn)" data-tip="Queda de brancos e nulos: 1.821.246 (12,9%)"></div>
+            <div class="seg" style="width:21.00%;background:var(--src-comp)" data-tip="Aumento do comparecimento: 2.960.239 (21,0%)"></div>
+          </div>
+          <div class="legend">
+            <span class="key"><span class="sw" style="background:var(--src-elim)"></span>Eliminados <span class="num">9.316.747</span> (66,1%)</span>
+            <span class="key"><span class="sw" style="background:var(--src-bn)"></span>Menos brancos e nulos <span class="num">1.821.246</span> (12,9%)</span>
+            <span class="key"><span class="sw" style="background:var(--src-comp)"></span>Mais comparecimento <span class="num">2.960.239</span> (21,0%)</span>
+          </div>
+        </div>
+        <div class="flow-row">
+          <span class="row-label">Destino</span>
+          <div class="flow-bar">
+            <div class="seg" style="width:73.60%;background:var(--lula)" data-tip="Lula: +10.376.694 votos (73,6%)"></div>
+            <div class="seg" style="width:26.40%;background:var(--flavio)" data-tip="Flávio: +3.721.538 votos (26,4%)"></div>
+          </div>
+          <div class="legend">
+            <span class="key"><span class="sw" style="background:var(--lula)"></span>Lula <span class="num">+10.376.694</span> (73,6%)</span>
+            <span class="key"><span class="sw" style="background:var(--flavio)"></span>Flávio <span class="num">+3.721.538</span> (26,4%)</span>
+          </div>
+        </div>
+      </div>
+      <figcaption>As duas barras têm o mesmo comprimento porque somam o mesmo número. A ordem das cores não liga uma origem a um destino: o TSE publica totais, não o caminho de cada voto.</figcaption>
+    </figure>
+
+    <div class="prose">
+      <p>Lula ganhou <span class="num">1.059.947</span> votos a mais do que os dez eliminados tinham somados. Isso não indica erro.
+        No 2º turno apareceram <span class="num">4.781.485</span> votos válidos novos, de pessoas que faltaram, votaram em branco ou anularam no 1º turno
+        (<span class="num">1.821.246 + 2.960.239</span>).</p>
+    </div>
+
+    <div class="note">
+      <h3>O que essa conta não diz</h3>
+      <p>Esses números são saldos. Eles não mostram que "os eleitores de Cury foram para Lula". Um eleitor de Lula no 1º turno pode ter faltado no 2º,
+        e outra pessoa, que faltou no 1º, pode ter votado em Flávio. O voto é secreto e o TSE só publica totais por seção, por isso a migração de cada eleitor não pode ser medida.
+        O que a conta garante é que nenhum voto "sobrou" ou "faltou".</p>
+    </div>
+  </div>
+</section>
+
+<!-- LIMIAR -->
+<section id="limiar">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Foi possível?</p>
+      <h2>Quanto Lula precisava dos votos novos</h2>
+      <p>Chame de <i>x</i> a fração dos 14.098.232 votos novos que foi para Lula. Para virar, ele precisava terminar na frente:</p>
+    </div>
+
+    <div class="math" aria-label="Inequação">53.879.538 + 14.098.232·x  &gt;  56.104.503 + 14.098.232·(1 − x)
+             28.196.464·x  &gt;  16.323.197
+                        x  &gt;  0,5789</div>
+
+    <figure>
+      <p class="fig-title">Fatia dos votos novos: mínimo necessário para virar × fatia obtida</p>
+      <div class="meters">
+        <div class="meter">
+          <div class="meter-head"><span><span class="key"><span class="sw" style="background:var(--lula)"></span><span><b>2026 · Lula</b>, atrás por 2.224.965</span></span></span><span>obteve <b class="num">73,60%</b> · virou</span></div>
+          <div class="meter-track" data-tip="Lula precisava de mais de 57,89% dos 14.098.232 votos novos e ficou com 73,60% (10.376.694)">
+            <div class="meter-fill" style="width:73.60%;background:var(--lula)"></div>
+            <div class="meter-need" style="left:57.89%"><span>precisava 57,89%</span></div>
+          </div>
+        </div>
+        <div class="meter">
+          <div class="meter-head"><span><span class="key"><span class="sw" style="background:var(--flavio)"></span><span><b>2022 · Jair Bolsonaro</b>, atrás por 6.187.159</span></span></span><span>obteve <b class="num">69,80%</b> · não virou</span></div>
+          <div class="meter-track" data-tip="Em 2022, Bolsonaro precisava de mais de 80,27% dos 10.220.504 votos novos e ficou com 69,80% (7.134.009)">
+            <div class="meter-fill" style="width:69.80%;background:var(--flavio)"></div>
+            <div class="meter-need" style="left:80.27%"><span>precisava 80,27%</span></div>
+          </div>
+        </div>
+        <div class="meter-scale" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+      </div>
+      <figcaption>Votos novos = soma do que os dois finalistas ganharam do 1º para o 2º turno. 2026: 14.098.232. 2022: 10.220.504 (Lula +3.086.495; Bolsonaro +7.134.009). Em 2022, Lula venceu o 2º turno por 2.139.645 votos.</figcaption>
+    </figure>
+
+    <div class="prose">
+      <p>Em 2026, a diferença do 1º turno era pequena: 1,87 ponto percentual dos votos válidos. Bastava a Lula pouco mais da metade dos votos novos. Ele levou quase três de cada quatro.</p>
+      <p>Em 2022 aconteceu o contrário. Bolsonaro, que estava atrás, também ficou com a maior parte dos votos novos, mas a distância era quase três vezes maior e não deu.</p>
+      <p><b>E sem nenhum eleitor novo?</b> Num cenário hipotético em que o comparecimento e os brancos e nulos ficassem iguais aos do 1º turno, só os 9.316.747 votos dos eliminados estariam em jogo.
+        Lula precisaria de mais de 61,94% deles. Com a mesma divisão observada (73,6% a 26,4%), venceria por cerca de 2,17 milhões. Isso mostra que a virada não dependeu só de quem voltou a votar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SIMULADOR -->
+<section id="simulador">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Teste você mesmo</p>
+      <h2>Simulador de 2º turno</h2>
+      <p>Parte do resultado real do 1º turno. Mova os controles para decidir como os eleitores dos eliminados e os eleitores novos se dividem.
+        O simulador supõe que quem votou em Lula ou Flávio no 1º turno repetiu o voto. Na vida real isso não é garantido, e por isso este é um modelo simplificado.</p>
+    </div>
+    <div class="sim">
+      <figure>
+        <div class="controls">
+          <div class="control">
+            <label for="sim-a">Eleitores dos eliminados que votaram em Lula <output id="out-a" for="sim-a"></output></label>
+            <input type="range" id="sim-a" min="0" max="100" step="any" value="72.885743">
+            <span class="hint">Base: 9.316.747 votos dos 10 eliminados.</span>
+          </div>
+          <div class="control">
+            <label for="sim-b">Eleitores dos eliminados que votaram em Flávio <output id="out-b" for="sim-b"></output></label>
+            <input type="range" id="sim-b" min="0" max="100" step="any" value="27.114257">
+            <span class="hint">O que sobra dos 100% votou em branco, anulou ou faltou.</span>
+          </div>
+          <div class="control">
+            <label for="sim-c">Eleitores novos com voto válido <output id="out-c" for="sim-c"></output></label>
+            <input type="range" id="sim-c" min="0" max="10" step="any" value="4.781485">
+            <span class="hint">Quem faltou, anulou ou votou em branco no 1º turno. Valor real: 4,78 milhões.</span>
+          </div>
+          <div class="control">
+            <label for="sim-d">Eleitores novos que votaram em Lula <output id="out-d" for="sim-d"></output></label>
+            <input type="range" id="sim-d" min="0" max="100" step="any" value="75">
+          </div>
+          <div class="presets">
+            <button type="button" data-preset="real">Um cenário que reproduz o resultado</button>
+            <button type="button" data-preset="meio">Tudo dividido ao meio</button>
+            <button type="button" data-preset="semnovos">Sem eleitores novos</button>
+          </div>
+        </div>
+      </figure>
+      <figure>
+        <div class="result" aria-live="polite">
+          <p class="eyebrow">Resultado simulado</p>
+          <p class="verdict" id="sim-verdict"></p>
+          <div class="duel-bar" id="sim-bar">
+            <div class="seg" id="sim-bar-l" style="background:var(--lula)"></div>
+            <div class="seg" id="sim-bar-f" style="background:var(--flavio)"></div>
+            <span class="half" aria-hidden="true"></span>
+          </div>
+          <div class="legend">
+            <span class="key"><span class="sw" style="background:var(--lula)"></span>Lula</span>
+            <span class="key"><span class="sw" style="background:var(--flavio)"></span>Flávio</span>
+          </div>
+          <dl>
+            <dt>Lula</dt><dd id="sim-l"></dd>
+            <dt>Flávio</dt><dd id="sim-f"></dd>
+            <dt>Diferença</dt><dd id="sim-diff"></dd>
+          </dl>
+          <p class="small" id="sim-note"></p>
+        </div>
+      </figure>
+    </div>
+    <p class="small prose">O botão "Um cenário que reproduz o resultado" usa cerca de 72,9% dos eliminados para Lula, 4.781.485 eleitores novos e 75% deles para Lula, e chega ao placar oficial voto a voto. É só uma das infinitas combinações que chegam ao placar oficial. Ninguém sabe a combinação verdadeira.</p>
+  </div>
+</section>
+
+<!-- ESTADOS -->
+<section id="estados">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Geografia</p>
+      <h2>Onde a virada aconteceu</h2>
+    </div>
+    <div class="chips">
+      <span class="chip">Lula cresceu nas <b>27</b> unidades da federação</span>
+      <span class="chip">Flávio perdeu votos em <b>6</b></span>
+      <span class="chip">Só <b>Minas Gerais</b> mudou de lado</span>
+      <span class="chip">Sudeste: Lula <b>+4,79 milhões</b></span>
+      <span class="chip">Nordeste: Lula <b>+2.955.848</b></span>
+    </div>
+
+    <figure>
+      <p class="fig-title">Quanto Lula cresceu do 1º para o 2º turno</p>
+      <div class="hbars">
+        <div class="hbar"><span class="name">Nordeste (9 estados)</span><span class="track"><span class="fill" style="width:78%" data-tip="Nordeste: 21.494.584 → 24.450.432 votos (+2.955.848)"></span><span class="val">+2.955.848</span></span></div>
+        <div class="hbar"><span class="name">São Paulo</span><span class="track"><span class="fill" style="width:68.98%" data-tip="São Paulo: 9.505.413 → 12.119.274 votos (+2.613.861)"></span><span class="val">+2.613.861</span></span></div>
+        <div class="hbar"><span class="name">Minas Gerais</span><span class="track"><span class="fill" style="width:30.67%" data-tip="Minas Gerais: 5.188.936 → 6.351.099 votos (+1.162.163)"></span><span class="val">+1.162.163</span></span></div>
+        <div class="hbar"><span class="name">Rio de Janeiro</span><span class="track"><span class="fill" style="width:23.01%" data-tip="Rio de Janeiro: cerca de +872 mil votos (valor arredondado)"></span><span class="val">≈ +872 mil</span></span></div>
+        <div class="hbar"><span class="name">Espírito Santo</span><span class="track"><span class="fill" style="width:4.01%" data-tip="Espírito Santo: cerca de +152 mil votos (valor arredondado)"></span><span class="val">≈ +152 mil</span></span></div>
+        <div class="hbar"><span class="name">Sul, Centro-Oeste, Norte e exterior</span><span class="track"><span class="fill" style="width:69.16%;opacity:0.55" data-tip="Restante, por diferença: cerca de 2,62 milhões"></span><span class="val">≈ +2,62 mi</span></span></div>
+      </div>
+      <figcaption>Nordeste, SP e MG com números exatos. RJ e ES arredondados (levantamento do Pacto Público, compatível com os +4,79 milhões do Sudeste no Poder360). O restante é calculado por diferença até o total de +10.376.694, por isso aparece mais claro.</figcaption>
+    </figure>
+
+    <div class="two">
+      <div class="scroll-x">
+        <table>
+          <caption>Estados-chave, nos dois turnos</caption>
+          <thead><tr><th>Onde</th><th class="r">1º turno</th><th class="r">2º turno</th></tr></thead>
+          <tbody>
+            <tr><td>São Paulo<br><span class="small">Lula · Flávio</span></td><td class="r">9.505.413 (38,20%)<br>12.922.023 (51,93%)</td><td class="r">12.119.274 (46,15%)<br>14.139.178 (53,85%)</td></tr>
+            <tr><td>Minas Gerais<br><span class="small">Lula · Flávio</span></td><td class="r">5.188.936 (43,33%)<br>5.777.548 (48,24%)</td><td class="r">6.351.099 (50,43%)<br>6.241.786 (49,57%)</td></tr>
+            <tr><td>Rio de Janeiro<br><span class="small">Lula · Flávio</span></td><td class="r">39,41%<br>—</td><td class="r">4.565.393 (46,90%)<br>5.169.033 (53,10%)</td></tr>
+            <tr><td>Bahia<br><span class="small">Lula · Flávio</span></td><td class="r">66,17%<br>28,53%</td><td class="r">6.485.258 (71,31%)<br>2.608.761 (28,69%)</td></tr>
+            <tr><td>Nordeste<br><span class="small">Lula · Flávio</span></td><td class="r">21.494.584<br>—</td><td class="r">24.450.432 (69,37%)<br>10.796.736 (30,63%)</td></tr>
+            <tr><td>Exterior<br><span class="small">Lula · Flávio</span></td><td class="r">—<br>—</td><td class="r">200.154 (53,86%)<br>171.497 (46,14%)</td></tr>
+          </tbody>
+        </table>
+        <p class="small" style="margin-top:10px">% dos votos válidos em cada lugar. "—" indica número que não consegui confirmar em fonte segura; preferi deixar em branco a estimar.</p>
+      </div>
+      <div class="scroll-x">
+        <table>
+          <caption>Onde Flávio perdeu votos</caption>
+          <thead><tr><th>UF</th><th class="r">1º → 2º turno</th></tr></thead>
+          <tbody>
+            <tr><td>Acre</td><td class="r">−15.092</td></tr>
+            <tr><td>Amapá</td><td class="r">−13.604</td></tr>
+            <tr><td>Roraima</td><td class="r">−11.647</td></tr>
+            <tr><td>Maranhão</td><td class="r">−9.069</td></tr>
+            <tr><td>Amazonas</td><td class="r">−1.519</td></tr>
+            <tr><td>Tocantins</td><td class="r">−1.405</td></tr>
+            <tr class="total"><td>Total</td><td class="r">−52.336</td></tr>
+          </tbody>
+        </table>
+        <p class="small" style="margin-top:10px">Nas outras 20 UFs e no DF, Flávio também cresceu, mas menos que Lula.</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <p><b>São Paulo</b> respondeu sozinho por 21,0% da virada nacional. Lula continuou perdendo no estado, mas a desvantagem caiu de 3.416.610 para 2.019.904 votos.
+        <b>Minas Gerais</b>, o único estado que trocou de lado, respondeu por 10,5%: saiu de 588.612 votos a favor de Flávio para 109.313 a favor de Lula.
+        No <b>Nordeste</b>, onde Lula venceu os nove estados nos dois turnos, a vantagem dele no 2º turno chegou a 13.653.696 votos.</p>
+    </div>
+
+    <div class="note">
+      <h3>Mais estados não é mais votos</h3>
+      <p>No 2º turno, Flávio venceu em 13 estados e no DF (14 unidades); Lula, em 13. No 1º turno tinha sido 14 estados e o DF para Flávio, 12 para Lula.
+        Mesmo assim Lula foi eleito, porque o presidente é escolhido pela maioria dos votos válidos do país inteiro (Constituição, art. 77, § 2º), não por estados.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DÚVIDAS -->
+<section id="duvidas">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Checagem com números</p>
+      <h2>As dúvidas que circulam</h2>
+      <p>As perguntas abaixo apareceram depois da eleição. Para cada uma, primeiro o fato, depois a conta.</p>
+    </div>
+
+    <div class="claims">
+      <article class="claim">
+        <span class="tag">Prorrogação</span>
+        <h3>A votação até as 19h decidiu a eleição?</h3>
+        <div class="body">
+          <p><b>O que aconteceu.</b> No dia do 2º turno, o ministro Cristiano Zanin, do STF, atendeu a um pedido da coligação de Lula, que relatava falta de transporte público gratuito
+            em Salvador, Feira de Santana e Lauro de Freitas (BA), e mandou estender a votação até as 19h (Reclamação 101.673). Depois, esclareceu que a extensão valia só para seções que ainda estavam abertas.
+            O TSE registrou que as duas campanhas relataram problemas no transporte de eleitores e suspendeu a divulgação de parciais até as 19h.</p>
+          <p><b>O debate.</b> Parte dos ministros do TSE viu a ordem como interferência do STF numa atribuição da Justiça Eleitoral, e o jurista Lenio Streck disse que Zanin
+            "decidiu fora de hora e foi além do que lhe pediram". Especialistas ouvidos pela revista Consultor Jurídico disseram que a decisão estava dentro da competência do STF,
+            com base na ADPF 1.013, de 2023, que exige transporte público gratuito no dia da eleição. Esse debate jurídico é legítimo e não depende da conta abaixo.</p>
+          <p><b>Os números.</b> Segundo o TSE, <span class="num">34.393</span> votos foram registrados depois das 17h no país inteiro: 32.399 entre 17h e 18h
+            (29.001 deles entre 17h e 17h05, o que indica gente que já estava na fila), 1.981 entre 18h e 19h e 13 depois das 19h.
+            A Gazeta do Povo, lendo os registros das urnas, contou 35.521. Para comparar, segundo a CNN Brasil, no 1º turno, sem prorrogação, 3.724.999 eleitores votaram depois das 17h,
+            porque quem está na fila às 17h tem direito de votar.</p>
+          <div class="scale-compare" role="img" aria-label="A vantagem de Lula, 4.430.191 votos, é 128,8 vezes o total de votos registrados depois das 17h, 34.393.">
+            <div class="lbl"><span>Vantagem final de Lula</span><span class="num">4.430.191</span></div>
+            <div class="bar" style="width:100%;background:var(--lula)"></div>
+            <div class="lbl"><span>Todos os votos depois das 17h, de qualquer candidato</span><span class="num">34.393</span></div>
+            <div class="bar" style="width:0.78%;min-width:3px;background:var(--ink)"></div>
+          </div>
+          <p class="verdict-line">Não. A vantagem foi 128,8 vezes maior que todos os votos depois das 17h. Mesmo que todos fossem de Lula e fossem anulados, ele venceria por 4.395.798.</p>
+        </div>
+      </article>
+
+      <article class="claim">
+        <span class="tag">"A conta não fecha"</span>
+        <h3>Lula ganhou mais votos do que os eliminados tinham. Isso é possível?</h3>
+        <div class="body">
+          <p>Vídeos que viralizaram dizem que os +10.376.694 votos de Lula não cabem nos 9.316.747 votos dos eliminados. A conta esquece duas fontes:
+            1.821.246 brancos e nulos a menos e 2.960.239 eleitores a mais. Com elas, a soma bate no voto exato (veja <a href="#conta">A conta</a>). O Poder360 classificou essa teoria como imprecisa.</p>
+          <p class="verdict-line">É possível e a conta fecha: 9.316.747 + 1.821.246 + 2.960.239 = 14.098.232 = 10.376.694 + 3.721.538.</p>
+        </div>
+      </article>
+
+      <article class="claim">
+        <span class="tag">Seções zeradas</span>
+        <h3>E as 106 seções em que Flávio teve zero votos?</h3>
+        <div class="body">
+          <p>Um levantamento da Paris Group, divulgado pela Folha de S.Paulo, encontrou 106 seções sem nenhum voto para Flávio no 2º turno, a maioria no Norte e no Nordeste.
+            O país teve cerca de 497 mil seções, com média de uns 320 eleitores cada. As 106 são 0,02% do total. Mesmo supondo 500 votos para Lula em cada uma,
+            acima da média, seriam 53 mil votos, 1,2% da vantagem final.</p>
+          <p class="verdict-line">O número, sozinho, não muda o resultado nem prova irregularidade. Uma suspeita concreta precisa ser verificada seção por seção, no boletim de urna, que é público.</p>
+        </div>
+      </article>
+
+      <article class="claim">
+        <span class="tag">Pesquisas</span>
+        <h3>As pesquisas mostravam Flávio na frente. Como Lula ganhou?</h3>
+        <div class="body">
+          <p>Na véspera do 2º turno, a maioria das pesquisas dava Flávio numericamente à frente, quase sempre em empate técnico (15 dos 16 levantamentos mais recentes reunidos pelo Poder360 quatro dias antes).
+            Mas as pesquisas também erraram o 1º turno, na direção oposta: 6 de 7 institutos davam Lula à frente na véspera, e Flávio venceu.</p>
+          <p class="verdict-line">Pesquisa é estimativa por amostra e errou nos dois turnos, para lados diferentes. O resultado é a contagem de todos os votos.</p>
+        </div>
+      </article>
+    </div>
+
+    <div class="status">
+      <p class="eyebrow">Situação em 28 de outubro de 2026</p>
+      <p>Flávio Bolsonaro não reconheceu o resultado. No dia 25, disse que pediria a anulação ao TSE, questionando a prorrogação e a fiscalização da apuração.
+        No dia 26, segundo o jornal O Povo, disse que vai pedir ao TSE a cassação da chapa de Lula por abuso de poder político e econômico. Também divulgou carta em que se declara "verdadeiro presidente eleito".
+        O TSE proclamou Lula reeleito, e o presidente do tribunal, ministro Kassio Nunes Marques, disse ter "absoluta segurança" no processo.
+        Esta página trata dos números; as ações na Justiça podem ter novos desdobramentos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LIMITES -->
+<section id="limites">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Sem exagero</p>
+      <h2>O que os dados não dizem</h2>
+    </div>
+    <ul class="list">
+      <li><b>Quem votou em quem.</b> O voto é secreto. Os totais mostram saldos, não a migração de cada pessoa. Frases como "os eleitores de Caiado foram para Flávio" são palpites, não dados do TSE.</li>
+      <li><b>Por que as pessoas mudaram.</b> Campanha, alianças, transporte e clima político podem ter pesado. A Nexo registrou que a campanha de Lula mirou quem tinha faltado no 1º turno, e os números são compatíveis com isso, mas não provam sozinhos a causa.</li>
+      <li><b>Comparações entre municípios.</b> Cruzar cidades (onde Cury foi bem, Lula cresceu mais?) ajuda a levantar hipóteses, mas tirar conclusões sobre indivíduos a partir de médias de grupos é um erro conhecido, chamado falácia ecológica.</li>
+      <li><b>Números estaduais incompletos.</b> Esta página mostra só os estados que consegui confirmar. Uma tabela completa das 27 UFs deve vir direto do TSE.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- EXERCÍCIOS -->
+<section id="exercicios">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Ensino fundamental II e ensino médio</p>
+      <h2>Para a sala de aula</h2>
+      <p>Cinco exercícios com os números reais. Clique para ver a resolução.</p>
+    </div>
+    <div>
+      <details>
+        <summary>1. Porcentagem · Lula teve 64.256.232 votos de um total de 124.082.273 votos válidos. Qual foi o percentual dele?</summary>
+        <div><p><span class="num">64.256.232 ÷ 124.082.273 = 0,5179</span>, ou seja, <b>51,79%</b>. Brancos e nulos não entram na conta porque não são votos válidos.</p></div>
+      </details>
+      <details>
+        <summary>2. Ponto percentual × porcentagem · A abstenção caiu de 21,08% para 19,22%. Quantos pontos percentuais caiu? E qual foi a queda relativa?</summary>
+        <div><p>Queda de <b>1,86 ponto percentual</b> (21,08 − 19,22). Em número de pessoas: 33.469.244 → 30.509.005, menos 2.960.239.
+          Queda relativa: <span class="num">2.960.239 ÷ 33.469.244 ≈ 8,8%</span>. "Caiu 1,86 p.p." e "caiu 8,8%" descrevem o mesmo fato.</p></div>
+      </details>
+      <details>
+        <summary>3. Inequação · Em 2022, Lula teve 57.259.504 votos e Bolsonaro 51.072.345 no 1º turno. Juntos, os dois ganharam 10.220.504 votos no 2º turno. Que fração mínima desses votos Bolsonaro precisava para virar?</summary>
+        <div><p><span class="num">51.072.345 + 10.220.504·x &gt; 57.259.504 + 10.220.504·(1 − x)</span></p>
+          <p><span class="num">20.441.008·x &gt; 16.407.663 → x &gt; 0,8027</span>. Ele precisava de mais de <b>80,27%</b> e obteve 69,80%. Lula venceu.</p></div>
+      </details>
+      <details>
+        <summary>4. Razão · Quantas vezes a vantagem de Lula (4.430.191) é maior que o total de votos registrados depois das 17h (34.393)?</summary>
+        <div><p><span class="num">4.430.191 ÷ 34.393 ≈ 128,8</span>. A vantagem é cerca de <b>129 vezes</b> maior.</p></div>
+      </details>
+      <details>
+        <summary>5. Sistemas · Por que não dá para descobrir, só com os totais, quantos eleitores de Augusto Cury votaram em Lula?</summary>
+        <div><p>Temos poucas equações (o ganho de Lula, o ganho de Flávio, a variação de brancos, nulos e abstenção) e muitas incógnitas: quanto de cada origem foi para cada destino,
+          e ainda as trocas entre eleitores de Lula e de Flávio. Um sistema com mais incógnitas que equações tem <b>infinitas soluções</b>.
+          O simulador acima mostra isso: combinações diferentes chegam ao mesmo placar.</p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- FONTES -->
+<section id="fontes">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Transparência</p>
+      <h2>Fontes e método</h2>
+    </div>
+    <ul class="list">
+      <li><b>Origem dos números.</b> Os totais nacionais vêm da totalização do TSE com 100% das seções. O ambiente em que esta página foi feita não tinha acesso direto aos servidores do TSE
+        (sig.tse.jus.br e resultados.tse.jus.br), então os números foram coletados de notícias do próprio TSE e de veículos que reproduzem a totalização, e conferidos entre si.</li>
+      <li><b>Conferência por soma.</b> 1º turno: os 12 candidatos somam 119.300.788 válidos, e 119.300.788 + 2.300.798 + 3.674.249 = 125.275.835 (comparecimento).
+        2º turno: 64.256.232 + 59.826.041 + 1.430.496 + 2.723.305 = 128.236.074. Origens e destinos dos votos novos fecham em 14.098.232.</li>
+      <li><b>Eleitorado.</b> O TSE divulgou 158.745.463 eleitores aptos antes da eleição. O número que fecha comparecimento + abstenção nos dois turnos é 158.745.079, uma diferença de 384 pessoas. Os percentuais não mudam.</li>
+      <li><b>Pequenas divergências.</b> Parciais da apuração em Minas mostravam 50,40% para Lula; o final é 50,43%. Votos depois das 17h: 34.393 (TSE) ou 35.521 (Gazeta do Povo). Nenhuma delas muda as conclusões.</li>
+      <li><b>Confira você.</b> Os dados oficiais estão no <a href="https://sig.tse.jus.br/ords/dwapr/seai/r/sig-eleicao/home" rel="noopener" target="_blank">SIG Eleição do TSE</a>
+        e no <a href="https://resultados.tse.jus.br" rel="noopener" target="_blank">portal de resultados do TSE</a>.</li>
+    </ul>
+    <ol class="sources">
+      <li><a href="https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/presidente-do-tse-anuncia-reeleicao-de-lula-e-faz-balanco-do-2o-turno-das-eleicoes-2026" target="_blank" rel="noopener">TSE · Presidente do TSE anuncia reeleição de Lula e faz balanço do 2º turno</a></li>
+      <li><a href="https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/eleicoes-2026-mais-de-34-mil-votos-foram-registrados-apos-as-17h-no-2o-turno" target="_blank" rel="noopener">TSE · Cerca de 34 mil votos foram registrados após as 17h no 2º turno</a></li>
+      <li><a href="https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/eleicoes-2026-em-numeros-158-7-milhoes-de-eleitores-estao-aptos-a-votar" target="_blank" rel="noopener">TSE · 158,7 milhões de eleitores aptos a votar</a></li>
+      <li><a href="https://pt.wikipedia.org/wiki/Elei%C3%A7%C3%A3o_presidencial_no_Brasil_em_2026" target="_blank" rel="noopener">Wikipédia · Eleição presidencial no Brasil em 2026 (tabela do 1º turno)</a></li>
+      <li><a href="https://www.poder360.com.br/poder-eleicoes-2026/compare-resultados-por-regiao-e-estado-do-1o-turno-para-o-2o-turno/" target="_blank" rel="noopener">Poder360 · Compare resultados por região e estado do 1º para o 2º turno</a></li>
+      <li><a href="https://www.poder360.com.br/poder-eleicoes-2026/flavio-perde-votos-em-6-estados-do-1o-para-o-2o-turno/" target="_blank" rel="noopener">Poder360 · Flávio perde votos em 6 estados</a></li>
+      <li><a href="https://www.poder360.com.br/poder-eleicoes-2026/teoria-da-conta-nao-fecha-do-2o-turno-das-eleicoes-e-imprecisa/" target="_blank" rel="noopener">Poder360 · Teoria da "conta não fecha" é imprecisa</a></li>
+      <li><a href="https://www.poder360.com.br/poder-eleicoes-2026/zanin-prorroga-votacao-do-2o-turno-ate-19h/" target="_blank" rel="noopener">Poder360 · STF prorroga eleição em 2h</a></li>
+      <li><a href="https://www.poder360.com.br/poder-eleicoes-2026/abstencao-no-1o-turno-cresce-e-vai-a-2108-em-2026/" target="_blank" rel="noopener">Poder360 · Abstenção no 1º turno foi de 21,08%</a></li>
+      <li><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/lula-cresce-em-numero-de-votos-em-todos-os-estados-flavio-recuou-em-6" target="_blank" rel="noopener">Agência Brasil · Lula cresce em todos os estados; Flávio recuou em 6</a></li>
+      <li><a href="https://www.metropoles.com/brasil/lula-ganha-103-milhoes-de-votos-no-2o-turno-e-flavio-37-milhoes" target="_blank" rel="noopener">Metrópoles · Lula ganha 10,3 milhões de votos a mais</a></li>
+      <li><a href="https://www.nexojornal.com.br/expresso/2026/10/27/lula-de-virada-segundo-turno-virada-historica-lula-fatores" target="_blank" rel="noopener">Nexo · Quais fatores explicam a virada de Lula</a></li>
+      <li><a href="https://jornalgrandebahia.com.br/2026/10/abstencao-na-eleicao-presidencial-cai-de-2108-no-1o-turno-para-1942-na-parcial-do-2o-turno-aponta-tse/" target="_blank" rel="noopener">Jornal Grande Bahia · Abstenção no 1º e no 2º turno</a></li>
+      <li><a href="https://diariodegoias.com.br/abstencao-no-2o-turno-foi-a-menor-em-eleicao-presidencial-desde-2006/552456/" target="_blank" rel="noopener">Diário de Goiás · Abstenção no 2º turno foi a menor desde 2006</a></li>
+      <li><a href="https://www.cnnbrasil.com.br/eleicoes/eleicoes-2026-tse-confirma-34-mil-votos-apos-as-17h-no-2o-turno/" target="_blank" rel="noopener">CNN Brasil · TSE confirma 34 mil votos após as 17h</a></li>
+      <li><a href="https://www.gazetadopovo.com.br/eleicoes/2026/extensao-horario-votacao-teve-35-mil-votos-17h-19h/" target="_blank" rel="noopener">Gazeta do Povo · Extensão do horário teve 35 mil votos</a></li>
+      <li><a href="https://conjur.com.br/2026-out-26/zanin-agiu-dentro-de-suas-competencias-ao-estender-horario-da-votacao/" target="_blank" rel="noopener">Conjur · Zanin agiu dentro de sua competência</a></li>
+      <li><a href="https://www.cnnbrasil.com.br/eleicoes/decisao-de-zanin-constrange-tse-e-ministros-descartam-3o-turno/" target="_blank" rel="noopener">CNN Brasil · Decisão de Zanin constrange TSE</a></li>
+      <li><a href="https://www.cnnbrasil.com.br/eleicoes/lula-vira-e-fica-a-frente-de-flavio-bolsonaro-em-minas-gerais-no-2o-turno/" target="_blank" rel="noopener">CNN Brasil · Lula vira em Minas Gerais</a></li>
+      <li><a href="https://eleicoes.nexojornal.com.br/2026/presidente/minas-gerais/" target="_blank" rel="noopener">Nexo · Resultado em Minas Gerais (1º turno)</a></li>
+      <li><a href="https://www.cnnbrasil.com.br/eleicoes/2o-turno-no-rio-de-janeiro-flavio-bolsonaro-tem-5310-contra-4690-de-lula/" target="_blank" rel="noopener">CNN Brasil · 2º turno no Rio de Janeiro</a></li>
+      <li><a href="https://www.tre-sp.jus.br/comunicacao/noticias/2026/Outubro/eleicoes-2026-lula-e-reeleito-presidente-da-republica-confira-resultado-do-2o-turno-em-sp" target="_blank" rel="noopener">TRE-SP · Resultado do 2º turno em SP</a></li>
+      <li><a href="https://www.boatos.org/eleicoes-2026/resultado-eleicoes-2026-em-sao-paulo-presidente-sp-2-turno.html" target="_blank" rel="noopener">Boatos.org · Resultado em São Paulo nos dois turnos</a></li>
+      <li><a href="https://www.congressoemfoco.com.br/noticia/129258/lula-venceu-a-eleicao-presidencial-no-nordeste-em-2026" target="_blank" rel="noopener">Congresso em Foco · Lula no Nordeste</a></li>
+      <li><a href="https://www.congressoemfoco.com.br/noticia/129276/lula-venceu-eleicao-presidencial-na-bahia" target="_blank" rel="noopener">Congresso em Foco · Lula na Bahia</a></li>
+      <li><a href="https://pactopublico.org/noticias/votos-lula-primeiro-para-segundo-turno-2026-estudo" target="_blank" rel="noopener">Pacto Público · Votos de Lula do 1º ao 2º turno</a></li>
+      <li><a href="https://exame.com/brasil/lula-ou-flavio-bolsonaro-quem-esta-ganhando-no-exterior-no-2o-turno-das-eleicoes/" target="_blank" rel="noopener">Exame · Votação no exterior</a></li>
+      <li><a href="https://ariquemesonline.com.br/noticia/181369/levantamento-flavio-bolsonaro-teve-votacao-zerada-em-106-urnas-no-segundo-turno-em-secoes-no-norte-e-nordeste" target="_blank" rel="noopener">Ariquemes Online · Levantamento sobre 106 seções</a></li>
+      <li><a href="https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/um-de-seis-institutos-de-pesquisa-apontava-flavio-numericamente-a-frente-de-lula/" target="_blank" rel="noopener">Gazeta do Povo · Pesquisas no 1º turno</a></li>
+      <li><a href="https://www.poder360.com.br/poder-eleicoes/pesquisas-nao-conseguiram-captar-virada-de-lula/" target="_blank" rel="noopener">Poder360 · Pesquisas não captaram a virada</a></li>
+      <li><a href="https://www.infomoney.com.br/politica/flavio-nao-reconhece-resultado-da-eleicao-e-diz-que-pedira-anulacao-ao-tse/" target="_blank" rel="noopener">InfoMoney · Flávio não reconhece resultado</a></li>
+      <li><a href="https://www.opovo.com.br/noticias/mundo/2026/10/28/amp/flavio-altera-caminho-para-buscar-reversao-da-derrota-eleitoral.html" target="_blank" rel="noopener">O Povo · Flávio altera caminho</a></li>
+      <li><a href="https://www.metropoles.com/mundo/em-carta-flavio-se-declara-verdadeiro-presidente-eleito-do-brasil" target="_blank" rel="noopener">Metrópoles · Carta de Flávio</a></li>
+    </ol>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Dados conferidos em 28 de outubro de 2026. Material de uso didático.</span>
+    <span>Não é um site oficial do TSE nem de nenhuma campanha.</span>
+  </div>
+</footer>
+
+<div class="tip" id="tip" role="tooltip" hidden></div>
+
+<script>
+(function () {
+  "use strict";
+  var fmt = new Intl.NumberFormat("pt-BR");
+  var pct = new Intl.NumberFormat("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  var pct1 = new Intl.NumberFormat("pt-BR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+
+  // Tooltip compartilhado para elementos com data-tip
+  var tip = document.getElementById("tip");
+  function showTip(el, x, y) {
+    tip.textContent = el.getAttribute("data-tip");
+    tip.hidden = false;
+    var w = tip.offsetWidth, h = tip.offsetHeight;
+    var left = Math.min(Math.max(8, x + 12), window.innerWidth - w - 8);
+    var top = y - h - 12 < 8 ? y + 16 : y - h - 12;
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  }
+  function hideTip() { tip.hidden = true; }
+  document.querySelectorAll("[data-tip]").forEach(function (el) {
+    el.addEventListener("pointermove", function (e) { showTip(el, e.clientX, e.clientY); });
+    el.addEventListener("pointerleave", function (e) { if (e.pointerType !== "touch") hideTip(); });
+    el.addEventListener("pointerdown", function (e) { showTip(el, e.clientX, e.clientY); });
+  });
+  window.addEventListener("scroll", hideTip, { passive: true });
+  document.addEventListener("pointerdown", function (e) { if (!e.target.closest("[data-tip]")) hideTip(); });
+
+  // Seção atual na navegação
+  var links = Array.prototype.slice.call(document.querySelectorAll(".sections a"));
+  if ("IntersectionObserver" in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (!en.isIntersecting) return;
+        links.forEach(function (a) { a.setAttribute("aria-current", a.getAttribute("href") === "#" + en.target.id ? "true" : "false"); });
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    document.querySelectorAll("main section[id]").forEach(function (s) { io.observe(s); });
+  }
+
+  // Simulador
+  var L1 = 53879538, F1 = 56104503, ELIM = 9316747;
+  var a = document.getElementById("sim-a"), b = document.getElementById("sim-b");
+  var c = document.getElementById("sim-c"), d = document.getElementById("sim-d");
+  var presets = {
+    real: [72.885743, 27.114257, 4.781485, 75],
+    meio: [50, 50, 4.78, 50],
+    semnovos: [73.6, 26.4, 0, 50]
+  };
+  function clamp(changed) {
+    var va = parseFloat(a.value), vb = parseFloat(b.value);
+    if (va + vb > 100) {
+      if (changed === a) b.value = 100 - va; else a.value = 100 - vb;
+    }
+  }
+  function update() {
+    var pa = parseFloat(a.value) / 100, pb = parseFloat(b.value) / 100;
+    var novos = parseFloat(c.value) * 1e6, pd = parseFloat(d.value) / 100;
+    var L = Math.round(L1 + ELIM * pa + novos * pd);
+    var F = Math.round(F1 + ELIM * pb + novos * (1 - pd));
+    var V = L + F, sl = L / V;
+    document.getElementById("out-a").textContent = pct1.format(pa * 100) + "%";
+    document.getElementById("out-b").textContent = pct1.format(pb * 100) + "%";
+    document.getElementById("out-c").textContent = pct.format(novos / 1e6) + " mi";
+    document.getElementById("out-d").textContent = pct1.format(pd * 100) + "%";
+    document.getElementById("sim-l").textContent = fmt.format(L) + " (" + pct.format(sl * 100) + "%)";
+    document.getElementById("sim-f").textContent = fmt.format(F) + " (" + pct.format((1 - sl) * 100) + "%)";
+    var diff = Math.abs(L - F);
+    document.getElementById("sim-diff").textContent = fmt.format(diff);
+    var v = document.getElementById("sim-verdict");
+    if (L > F) v.textContent = "Lula vence por " + fmt.format(diff) + " votos";
+    else if (F > L) v.textContent = "Flávio vence por " + fmt.format(diff) + " votos";
+    else v.textContent = "Empate exato";
+    document.getElementById("sim-bar-l").style.width = (sl * 100) + "%";
+    document.getElementById("sim-bar-f").style.width = ((1 - sl) * 100) + "%";
+    var resto = Math.max(0, 1 - pa - pb);
+    document.getElementById("sim-note").textContent =
+      "Dos eliminados, " + pct1.format(resto * 100) + "% (" + fmt.format(Math.round(ELIM * resto)) +
+      " eleitores) não escolheram nenhum dos dois. Resultado real: Lula 64.256.232 (51,79%) × Flávio 59.826.041 (48,21%).";
+  }
+  [a, b, c, d].forEach(function (el) {
+    el.addEventListener("input", function () { clamp(el); update(); });
+  });
+  document.querySelectorAll("[data-preset]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var p = presets[btn.getAttribute("data-preset")];
+      a.value = p[0]; b.value = p[1]; c.value = p[2]; d.value = p[3];
+      update();
+    });
+  });
+  update();
+})();
+</script>
+</body>
+</html>
