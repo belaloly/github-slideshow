@@ -239,6 +239,13 @@ button:hover { border-color: var(--ink); }
 @media (max-width: 560px) { .hbar { grid-template-columns: 1fr; gap: 4px; } }
 .two { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 20px; align-items: start; }
 
+/* Termos */
+.terms { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 28px; margin: 0; }
+.terms div { display: grid; gap: 2px; align-content: start; border-top: 1px solid var(--rule); padding-top: 10px; }
+.terms dt { font-family: var(--font-display); font-weight: 700; font-size: 0.95rem; }
+.terms dd { margin: 0; font-size: 0.95rem; color: var(--ink-2); line-height: 1.5; }
+@media (max-width: 720px) { .terms { grid-template-columns: 1fr; } }
+
 /* Modelos: gráfico de pontos */
 .dots { display: grid; }
 .dot-group { font-family: var(--font-display); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding-top: 12px; }
@@ -339,7 +346,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
     <div class="figures">
       <div class="figure-tile"><span class="label">Vantagem de Flávio no 1º turno</span><span class="value">2.224.965</span></div>
       <div class="figure-tile"><span class="label">Vantagem de Lula no 2º turno</span><span class="value">4.430.191</span></div>
-      <div class="figure-tile"><span class="label">Fatia de Lula nos votos que os dois ganharam entre os turnos</span><span class="value">73,6<span class="unit">%</span></span></div>
+      <div class="figure-tile"><span class="label">Parte dos votos a mais do 2º turno que ficou com Lula</span><span class="value">73,6<span class="unit">%</span></span></div>
     </div>
 
     <p class="disclaimer">Este não é um site do TSE. Os números são da totalização oficial, publicada pelo TSE e reproduzida pela imprensa,
@@ -351,6 +358,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
 <nav class="sections" aria-label="Seções">
   <div class="wrap">
     <ol>
+      <li><a href="#termos">Termos</a></li>
       <li><a href="#placar">Placar</a></li>
       <li><a href="#conta">A conta</a></li>
       <li><a href="#limiar">Quanto precisava</a></li>
@@ -366,6 +374,27 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
 </nav>
 
 <main>
+
+<!-- TERMOS -->
+<section id="termos">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Antes de começar</p>
+      <h2>O que cada termo quer dizer</h2>
+      <p>Estes termos são usados sempre com o mesmo sentido em toda a página.</p>
+    </div>
+    <dl class="terms">
+      <div><dt>Votos válidos</dt><dd>Votos dados a um candidato. Brancos e nulos não entram. O vencedor é quem tem mais da metade dos votos válidos.</dd></div>
+      <div><dt>Comparecimento e abstenção</dt><dd>Comparecimento é quem foi votar. Abstenção é quem podia votar e não foi.</dd></div>
+      <div><dt>Os outros 10 candidatos</dt><dd>Os 10 candidatos do 1º turno que não passaram para o 2º (todos menos Lula e Flávio). Juntos tiveram 9.316.747 votos no 1º turno. Nas redes, esse grupo costuma ser chamado de "terceira via".</dd></div>
+      <div><dt>Votos a mais</dt><dd>Quantos votos um candidato teve no 2º turno além dos que teve no 1º. Lula: +10.376.694. Flávio: +3.721.538. Os dois juntos: +14.098.232.</dd></div>
+      <div><dt>Novos votos válidos</dt><dd>Votos válidos do 2º turno que vieram de pessoas que, no 1º turno, faltaram, votaram em branco ou anularam. Em 2026 foram 4.781.485, em saldo.</dd></div>
+      <div><dt>Saldo</dt><dd>O que entrou menos o que saiu. O TSE publica só totais, então todo movimento de votos nesta página é saldo, e não o caminho de cada eleitor.</dd></div>
+      <div><dt>Vantagem</dt><dd>Votos do primeiro colocado menos votos do segundo.</dd></div>
+      <div><dt>Hipótese simples</dt><dd>Supor que ninguém que votou em Lula ou em Flávio no 1º turno mudou de voto ou deixou de votar no 2º. Serve para fazer contas; na vida real, sempre há algumas trocas.</dd></div>
+    </dl>
+  </div>
+</section>
 
 <!-- PLACAR -->
 <section id="placar">
@@ -393,6 +422,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
             <tr><td><span class="cand"><span class="dot"></span>Edmilson Costa (PCB)</span></td><td class="r">22.693</td><td class="r">0,02</td></tr>
             <tr><td><span class="cand"><span class="dot"></span>Wilson Grassi (Democrata)</span></td><td class="r">16.881</td><td class="r">0,01</td></tr>
             <tr><td><span class="cand"><span class="dot"></span>Rui Costa Pimenta (PCO)</span></td><td class="r">15.024</td><td class="r">0,01</td></tr>
+            <tr class="aux"><td>Soma dos outros 10 candidatos (de Cury a Rui Costa Pimenta)</td><td class="r">9.316.747</td><td class="r">7,81</td></tr>
             <tr class="total"><td>Votos válidos</td><td class="r">119.300.788</td><td class="r">100</td></tr>
             <tr class="aux"><td>Brancos (1,84% dos votos)</td><td class="r">2.300.798</td><td class="r"></td></tr>
             <tr class="aux"><td>Nulos (2,93% dos votos)</td><td class="r">3.674.249</td><td class="r"></td></tr>
@@ -428,35 +458,35 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
     <div class="section-head">
       <p class="eyebrow">De onde vieram os votos</p>
       <h2>A conta fecha, voto a voto</h2>
-      <p>Entre os turnos, Lula ganhou <span class="num">10.376.694</span> votos e Flávio, <span class="num">3.721.538</span>.
-        Juntos, <mark class="num">14.098.232</mark> votos a mais. Só existem três lugares de onde esses votos podem ter saído, e eles somam exatamente esse valor.</p>
+      <p>No 2º turno, Lula teve <span class="num">10.376.694</span> votos a mais do que no 1º, e Flávio, <span class="num">3.721.538</span> a mais.
+        Juntos, <mark class="num">14.098.232</mark> votos a mais. Esses votos só podem ter vindo de três lugares, e os três somam exatamente esse valor.</p>
     </div>
 
-    <div class="ledger" role="table" aria-label="Origem dos votos novos dos finalistas">
-      <div class="line" role="row"><span class="op"></span><span role="cell">Votos dos 10 candidatos eliminados no 1º turno</span><span class="v" role="cell">9.316.747</span></div>
-      <div class="line" role="row"><span class="op">+</span><span role="cell">Queda de brancos e nulos (5.975.047 → 4.153.801)</span><span class="v" role="cell">1.821.246</span></div>
-      <div class="line" role="row"><span class="op">+</span><span role="cell">Aumento do comparecimento (125.275.835 → 128.236.074)</span><span class="v" role="cell">2.960.239</span></div>
-      <div class="line sum" role="row"><span class="op">=</span><span role="cell">Votos que Lula e Flávio ganharam juntos</span><span class="v" role="cell">14.098.232</span></div>
+    <div class="ledger" role="table" aria-label="De onde vieram os votos a mais de Lula e Flávio">
+      <div class="line" role="row"><span class="op"></span><span role="cell">Votos dos outros 10 candidatos no 1º turno</span><span class="v" role="cell">9.316.747</span></div>
+      <div class="line" role="row"><span class="op">+</span><span role="cell">Brancos e nulos a menos (5.975.047 → 4.153.801)</span><span class="v" role="cell">1.821.246</span></div>
+      <div class="line" role="row"><span class="op">+</span><span role="cell">Pessoas a mais votando (125.275.835 → 128.236.074)</span><span class="v" role="cell">2.960.239</span></div>
+      <div class="line sum" role="row"><span class="op">=</span><span role="cell">Votos a mais de Lula e Flávio, juntos</span><span class="v" role="cell">14.098.232</span></div>
     </div>
 
     <figure>
-      <p class="fig-title">De onde vieram e para onde foram os 14.098.232 votos novos</p>
+      <p class="fig-title">De onde vieram e para quem foram os 14.098.232 votos a mais</p>
       <div class="flow">
         <div class="flow-row">
-          <span class="row-label">Origem (saldo)</span>
+          <span class="row-label">De onde vieram (saldo)</span>
           <div class="flow-bar">
-            <div class="seg" style="width:66.08%;background:var(--src-elim)" data-tip="Votos dos 10 eliminados no 1º turno: 9.316.747 (66,1%)"></div>
-            <div class="seg" style="width:12.92%;background:var(--src-bn)" data-tip="Queda de brancos e nulos: 1.821.246 (12,9%)"></div>
-            <div class="seg" style="width:21.00%;background:var(--src-comp)" data-tip="Aumento do comparecimento: 2.960.239 (21,0%)"></div>
+            <div class="seg" style="width:66.08%;background:var(--src-elim)" data-tip="Votos dos outros 10 candidatos no 1º turno: 9.316.747 (66,1%)"></div>
+            <div class="seg" style="width:12.92%;background:var(--src-bn)" data-tip="Brancos e nulos a menos: 1.821.246 (12,9%)"></div>
+            <div class="seg" style="width:21.00%;background:var(--src-comp)" data-tip="Pessoas a mais votando: 2.960.239 (21,0%)"></div>
           </div>
           <div class="legend">
-            <span class="key"><span class="sw" style="background:var(--src-elim)"></span>Eliminados <span class="num">9.316.747</span> (66,1%)</span>
-            <span class="key"><span class="sw" style="background:var(--src-bn)"></span>Menos brancos e nulos <span class="num">1.821.246</span> (12,9%)</span>
-            <span class="key"><span class="sw" style="background:var(--src-comp)"></span>Mais comparecimento <span class="num">2.960.239</span> (21,0%)</span>
+            <span class="key"><span class="sw" style="background:var(--src-elim)"></span>Outros 10 candidatos <span class="num">9.316.747</span> (66,1%)</span>
+            <span class="key"><span class="sw" style="background:var(--src-bn)"></span>Brancos e nulos a menos <span class="num">1.821.246</span> (12,9%)</span>
+            <span class="key"><span class="sw" style="background:var(--src-comp)"></span>Pessoas a mais votando <span class="num">2.960.239</span> (21,0%)</span>
           </div>
         </div>
         <div class="flow-row">
-          <span class="row-label">Destino</span>
+          <span class="row-label">Para quem foram</span>
           <div class="flow-bar">
             <div class="seg" style="width:73.60%;background:var(--lula)" data-tip="Lula: +10.376.694 votos (73,6%)"></div>
             <div class="seg" style="width:26.40%;background:var(--flavio)" data-tip="Flávio: +3.721.538 votos (26,4%)"></div>
@@ -471,8 +501,8 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
     </figure>
 
     <div class="prose">
-      <p>Lula ganhou <span class="num">1.059.947</span> votos a mais do que os dez eliminados tinham somados. Isso não indica erro.
-        No 2º turno apareceram <span class="num">4.781.485</span> votos válidos novos, de pessoas que faltaram, votaram em branco ou anularam no 1º turno
+      <p>Só Lula teve 10.376.694 votos a mais, ou seja, <span class="num">1.059.947</span> a mais do que os outros 10 candidatos tiveram somados (9.316.747). Isso não indica erro.
+        No 2º turno houve <span class="num">4.781.485</span> novos votos válidos, de pessoas que faltaram, votaram em branco ou anularam no 1º turno
         (<span class="num">1.821.246 + 2.960.239</span>).</p>
     </div>
 
@@ -490,8 +520,8 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">Foi possível?</p>
-      <h2>Quanto Lula precisava dos votos novos</h2>
-      <p>Chame de <i>x</i> a fração dos 14.098.232 votos novos que foi para Lula. Para virar, ele precisava terminar na frente:</p>
+      <h2>Quanto Lula precisava dos votos a mais</h2>
+      <p>Chame de <i>x</i> a parte dos 14.098.232 votos a mais que foi para Lula (o resto foi para Flávio). Para virar, Lula precisava terminar com mais votos:</p>
     </div>
 
     <div class="math" aria-label="Inequação">53.879.538 + 14.098.232·x  &gt;  56.104.503 + 14.098.232·(1 − x)
@@ -499,32 +529,32 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
                         x  &gt;  0,5789</div>
 
     <figure>
-      <p class="fig-title">Fatia dos votos novos: mínimo necessário para virar × fatia obtida</p>
+      <p class="fig-title">Parte dos votos a mais: mínimo necessário para virar × o que foi obtido</p>
       <div class="meters">
         <div class="meter">
           <div class="meter-head"><span><span class="key"><span class="sw" style="background:var(--lula)"></span><span><b>2026 · Lula</b>, atrás por 2.224.965</span></span></span><span>obteve <b class="num">73,60%</b> · virou</span></div>
-          <div class="meter-track" data-tip="Lula precisava de mais de 57,89% dos 14.098.232 votos novos e ficou com 73,60% (10.376.694)">
+          <div class="meter-track" data-tip="Lula precisava de mais de 57,89% dos 14.098.232 votos a mais e ficou com 73,60% (10.376.694)">
             <div class="meter-fill" style="width:73.60%;background:var(--lula)"></div>
             <div class="meter-need" style="left:57.89%"><span>precisava 57,89%</span></div>
           </div>
         </div>
         <div class="meter">
           <div class="meter-head"><span><span class="key"><span class="sw" style="background:var(--flavio)"></span><span><b>2022 · Jair Bolsonaro</b>, atrás por 6.187.159</span></span></span><span>obteve <b class="num">69,80%</b> · não virou</span></div>
-          <div class="meter-track" data-tip="Em 2022, Bolsonaro precisava de mais de 80,27% dos 10.220.504 votos novos e ficou com 69,80% (7.134.009)">
+          <div class="meter-track" data-tip="Em 2022, Bolsonaro precisava de mais de 80,27% dos 10.220.504 votos a mais e ficou com 69,80% (7.134.009)">
             <div class="meter-fill" style="width:69.80%;background:var(--flavio)"></div>
             <div class="meter-need" style="left:80.27%"><span>precisava 80,27%</span></div>
           </div>
         </div>
         <div class="meter-scale" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
       </div>
-      <figcaption>Votos novos = soma do que os dois finalistas ganharam do 1º para o 2º turno. 2026: 14.098.232. 2022: 10.220.504 (Lula +3.086.495; Bolsonaro +7.134.009). Em 2022, Lula venceu o 2º turno por 2.139.645 votos.</figcaption>
+      <figcaption>Votos a mais = votos dos dois finalistas no 2º turno menos os votos deles no 1º turno. 2026: 14.098.232. 2022: 10.220.504 (Lula +3.086.495; Bolsonaro +7.134.009). Em 2022, Lula venceu o 2º turno por 2.139.645 votos.</figcaption>
     </figure>
 
     <div class="prose">
-      <p>Em 2026, a diferença do 1º turno era pequena: 1,87 ponto percentual dos votos válidos. Bastava a Lula pouco mais da metade dos votos novos. Ele levou quase três de cada quatro.</p>
-      <p>Em 2022 aconteceu o contrário. Bolsonaro, que estava atrás, também ficou com a maior parte dos votos novos, mas a distância era quase três vezes maior e não deu.</p>
-      <p><b>E sem nenhum eleitor novo?</b> Num cenário hipotético em que o comparecimento e os brancos e nulos ficassem iguais aos do 1º turno, só os 9.316.747 votos dos eliminados estariam em jogo.
-        Lula precisaria de mais de 61,94% deles. Com a mesma divisão observada (73,6% a 26,4%), venceria por cerca de 2,17 milhões. Isso mostra que a virada não dependeu só de quem voltou a votar.</p>
+      <p>Em 2026, a diferença do 1º turno era pequena: 1,87 ponto percentual dos votos válidos. Bastava a Lula pouco mais da metade dos votos a mais. Ele ficou com quase três de cada quatro.</p>
+      <p>Em 2022 aconteceu o contrário. Bolsonaro, que estava atrás, também ficou com a maior parte dos votos a mais, mas a distância era quase três vezes maior e não foi suficiente.</p>
+      <p><b>E se não houvesse novos votos válidos?</b> Imagine que o comparecimento e os brancos e nulos ficassem iguais aos do 1º turno. Aí só os 9.316.747 votos dos outros 10 candidatos estariam em jogo.
+        Lula precisaria de mais de 61,94% deles. Com a mesma divisão que aconteceu (73,6% para Lula e 26,4% para Flávio), Lula venceria por cerca de 2,17 milhões. É uma conta hipotética; ela mostra que a virada não dependeu só de quem voltou a votar.</p>
     </div>
   </div>
 </section>
@@ -535,36 +565,37 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
     <div class="section-head">
       <p class="eyebrow">Teste você mesmo</p>
       <h2>Simulador de 2º turno</h2>
-      <p>Parte do resultado real do 1º turno. Mova os controles para decidir como os eleitores dos eliminados e os eleitores novos se dividem.
-        O simulador supõe que quem votou em Lula ou Flávio no 1º turno repetiu o voto. Na vida real isso não é garantido, e por isso este é um modelo simplificado.</p>
+      <p>O simulador começa no resultado real do 1º turno. Você decide como votaram, no 2º turno, os eleitores dos outros 10 candidatos e as pessoas que deram novos votos válidos.
+        Ele usa a hipótese simples: quem votou em Lula ou Flávio no 1º turno repetiu o voto. Na vida real há algumas trocas, então o simulador é uma aproximação.</p>
     </div>
     <div class="sim">
       <figure>
         <div class="controls">
           <div class="control">
-            <label for="sim-a">Eleitores dos eliminados que votaram em Lula <output id="out-a" for="sim-a"></output></label>
+            <label for="sim-a">Eleitores dos outros 10 candidatos que votaram em Lula <output id="out-a" for="sim-a"></output></label>
             <input type="range" id="sim-a" min="0" max="100" step="any" value="72.885743">
-            <span class="hint">Base: 9.316.747 votos dos 10 eliminados.</span>
+            <span class="hint">Base: os 9.316.747 votos que os outros 10 candidatos tiveram no 1º turno.</span>
           </div>
           <div class="control">
-            <label for="sim-b">Eleitores dos eliminados que votaram em Flávio <output id="out-b" for="sim-b"></output></label>
+            <label for="sim-b">Eleitores dos outros 10 candidatos que votaram em Flávio <output id="out-b" for="sim-b"></output></label>
             <input type="range" id="sim-b" min="0" max="100" step="any" value="27.114257">
-            <span class="hint">O que sobra dos 100% votou em branco, anulou ou faltou.</span>
+            <span class="hint">O que faltar para 100% votou em branco, anulou ou não foi votar.</span>
           </div>
           <div class="control">
-            <label for="sim-c">Eleitores novos com voto válido <output id="out-c" for="sim-c"></output></label>
+            <label for="sim-c">Novos votos válidos <output id="out-c" for="sim-c"></output></label>
             <input type="range" id="sim-c" min="0" max="10" step="any" value="4.781485">
-            <span class="hint">Quem faltou, anulou ou votou em branco no 1º turno. Valor real: 4,78 milhões.</span>
+            <span class="hint">Pessoas que faltaram, votaram em branco ou anularam no 1º turno e votaram em Lula ou Flávio no 2º. Valor real, em saldo: 4,78 milhões.</span>
           </div>
           <div class="control">
-            <label for="sim-d">Eleitores novos que votaram em Lula <output id="out-d" for="sim-d"></output></label>
+            <label for="sim-d">Parte dos novos votos válidos que foi para Lula <output id="out-d" for="sim-d"></output></label>
             <input type="range" id="sim-d" min="0" max="100" step="any" value="75">
           </div>
           <div class="presets">
             <button type="button" data-preset="real">Um cenário que reproduz o resultado</button>
             <button type="button" data-preset="meio">Tudo dividido ao meio</button>
-            <button type="button" data-preset="semnovos">Sem eleitores novos</button>
-            <button type="button" data-preset="terceira">Terceira via 40% × 40%</button>
+            <button type="button" data-preset="semnovos">Sem novos votos válidos</button>
+            <button type="button" data-preset="terceira">Outros 10 candidatos: 40% para cada um</button>
+            <button type="button" data-preset="curycaiado">Cury e Caiado: 100% para Flávio</button>
           </div>
         </div>
       </figure>
@@ -591,8 +622,11 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
         </div>
       </figure>
     </div>
-    <p class="small prose">O botão "Terceira via 40% × 40%" mostra o que esse cenário exige: para chegar ao total real de votos válidos, entram 6,64 milhões de eleitores novos, e todos precisam votar em Lula.</p>
-    <p class="small prose">O botão "Um cenário que reproduz o resultado" usa cerca de 72,9% dos eliminados para Lula, 4.781.485 eleitores novos e 75% deles para Lula, e chega ao placar oficial voto a voto. É só uma das infinitas combinações que chegam ao placar oficial. Ninguém sabe a combinação verdadeira.</p>
+    <ul class="list small">
+      <li><b>Um cenário que reproduz o resultado:</b> 72,9% dos eleitores dos outros 10 candidatos para Lula, 4.781.485 novos votos válidos e 75% deles para Lula. Chega ao placar oficial voto a voto, mas é só uma das infinitas combinações possíveis. Ninguém sabe qual foi a verdadeira.</li>
+      <li><b>Outros 10 candidatos: 40% para cada um:</b> para chegar ao total real de votos válidos, entram 6,64 milhões de novos votos válidos, e todos precisam ir para Lula.</li>
+      <li><b>Cury e Caiado: 100% para Flávio:</b> todos os outros votos vão para Lula, e mesmo assim Flávio vence. Veja a explicação em <a href="#cury-caiado">Dúvidas</a>.</li>
+    </ul>
   </div>
 </section>
 
@@ -638,7 +672,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
             <tr><td>Exterior<br><span class="small">Lula · Flávio</span></td><td class="r">—<br>—</td><td class="r">200.154 (53,86%)<br>171.497 (46,14%)</td></tr>
           </tbody>
         </table>
-        <p class="small" style="margin-top:10px">% dos votos válidos em cada lugar. "—" indica número que não consegui confirmar em fonte segura; preferi deixar em branco a estimar.</p>
+        <p class="small" style="margin-top:10px">% dos votos válidos em cada lugar. "—" indica número não confirmado em fonte segura. Nesses casos, a página deixa em branco em vez de estimar.</p>
       </div>
       <div class="scroll-x">
         <table>
@@ -708,46 +742,68 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
 
       <article class="claim">
         <span class="tag">"A conta não fecha"</span>
-        <h3>Lula ganhou mais votos do que os eliminados tinham. Isso é possível?</h3>
+        <h3>Os votos a mais de Lula superam os votos dos outros 10 candidatos. Isso é possível?</h3>
         <div class="body">
-          <p>Vídeos que viralizaram dizem que os +10.376.694 votos de Lula não cabem nos 9.316.747 votos dos eliminados. A conta esquece duas fontes:
-            1.821.246 brancos e nulos a menos e 2.960.239 eleitores a mais. Com elas, a soma bate no voto exato (veja <a href="#conta">A conta</a>). O Poder360 classificou essa teoria como imprecisa.</p>
+          <p>Vídeos que viralizaram dizem que os 10.376.694 votos a mais de Lula não cabem nos 9.316.747 votos dos outros 10 candidatos. A conta esquece duas fontes:
+            1.821.246 brancos e nulos a menos e 2.960.239 pessoas a mais votando. Com elas, a soma bate no voto exato (veja <a href="#conta">A conta</a>). O Poder360 classificou essa teoria como imprecisa.</p>
           <p class="verdict-line">É possível e a conta fecha: 9.316.747 + 1.821.246 + 2.960.239 = 14.098.232 = 10.376.694 + 3.721.538.</p>
         </div>
       </article>
 
       <article class="claim" id="terceira-via">
-        <span class="tag">Terceira via</span>
-        <h3>Lula teria precisado de todos os votos da terceira via?</h3>
+        <span class="tag">Outros 10 candidatos</span>
+        <h3>Lula precisou de todos os votos dos outros 10 candidatos?</h3>
         <div class="body">
-          <p><b>Não.</b> A frase compara só dois números: os 10.376.694 votos que Lula ganhou e os 9.316.747 votos dos dez eliminados.
-            Ela esquece as 4.781.485 pessoas que não deram voto válido no 1º turno (faltaram, anularam ou votaram em branco) e deram no 2º.</p>
-          <p><b>A faixa possível.</b> No modelo mais rígido, todo eleitor de Lula e de Flávio repete o voto e todo eleitor da terceira via vota de novo.
-            Nesse modelo, Lula precisou de algo <b>entre 60,1% e 100%</b> dos votos da terceira via:</p>
+          <p><b>Não.</b> Essa frase compara só dois números: os 10.376.694 votos a mais de Lula e os 9.316.747 votos dos outros 10 candidatos.
+            Ela esquece os 4.781.485 novos votos válidos, de pessoas que no 1º turno faltaram, votaram em branco ou anularam.</p>
+          <p><b>Quanto ele precisou, no mínimo e no máximo.</b> Na hipótese simples (ninguém que votou em Lula ou Flávio no 1º turno mudou o voto, e todos os eleitores dos outros 10 candidatos votaram de novo),
+            Lula precisou de algo <b>entre 60,1% e 100%</b> dos votos dos outros 10 candidatos:</p>
           <ul class="list">
-            <li>60,1%, se todos os 4.781.485 eleitores novos votaram nele;</li>
-            <li>100%, só se ele tivesse ficado com apenas 22,2% dos eleitores novos.</li>
+            <li>60,1%, se todos os 4.781.485 novos votos válidos foram para ele;</li>
+            <li>100%, só se ele tivesse ficado com apenas 22,2% dos novos votos válidos.</li>
           </ul>
-          <div class="scale-compare" role="img" aria-label="Faixa da fatia da terceira via compatível com o resultado no modelo rígido: de 60,1% a 100%.">
-            <div class="lbl"><span>Fatia da terceira via que foi para Lula, no modelo rígido</span><span class="num">60,1% a 100%</span></div>
+          <div class="scale-compare" role="img" aria-label="Na hipótese simples, a parte dos votos dos outros 10 candidatos que foi para Lula está entre 60,1% e 100%.">
+            <div class="lbl"><span>Parte dos votos dos outros 10 candidatos que foi para Lula, na hipótese simples</span><span class="num">60,1% a 100%</span></div>
             <div class="meter-track" style="margin-top:22px">
               <div class="meter-fill" style="left:60.06%;width:39.94%;background:var(--lula);opacity:0.55"></div>
               <div class="meter-need" style="left:60.06%"><span>60,1%</span></div>
             </div>
             <div class="meter-scale" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
           </div>
-          <p>Em toda eleição há gente que vota no 1º turno e falta no 2º, e gente que faz o contrário. Admitindo essa troca, a fatia necessária da terceira via pode ficar abaixo de 60%.
-            Há ainda quem votou em Flávio no 1º turno e em Lula no 2º: cada um desses muda a diferença em 2 votos. Os totais não mostram quantos foram.</p>
-          <p><b>O que merece atenção.</b> Caiado, Zema e Cury declararam apoio a Flávio no 2º turno (Cury com condições), e Renan Santos liberou os eleitores.
-            Na pesquisa Quaest de 21/10, entre eleitores de Cury, 48% diziam votar em Lula e 33% em Flávio; entre os de Renan, 51% em Flávio e 25% em Lula.
-            Na rodada de 14/10, entre os de Caiado, eram 42% para Flávio e 23% para Lula. Se a terceira via se dividiu mais ou menos assim, Lula não levou 60% dela.
-            Nesse caso, a maior parte do crescimento dele veio de quem não tinha dado voto válido no 1º turno.</p>
-          <p>Um exemplo: se a terceira via tivesse ido 40% para Lula, 40% para Flávio e 20% para branco, nulo ou abstenção, o saldo de quem entrou para votar no 2º turno,
-            cerca de 6,6 milhões, teria ido praticamente todo para Lula. É uma exigência forte. Os dados de comparecimento apontam nessa direção:
+          <p>Fora da hipótese simples, o mínimo pode ser menor que 60%. Em toda eleição há quem vota no 1º turno e falta no 2º, e quem faz o contrário.
+            Também há quem votou em Flávio no 1º turno e em Lula no 2º: cada pessoa assim muda a diferença em 2 votos. Os totais do TSE não mostram quantas foram.</p>
+          <p><b>O que as pesquisas mostravam.</b> Caiado, Zema e Cury declararam apoio a Flávio no 2º turno (Cury com condições), e Renan Santos liberou os eleitores.
+            Na pesquisa Quaest de 21/10, entre eleitores de Cury, 48% diziam votar em Lula e 33% em Flávio. Entre os de Renan, 51% em Flávio e 25% em Lula.
+            Na rodada de 14/10, entre os de Caiado, 42% em Flávio e 23% em Lula. Se os eleitores dos outros 10 candidatos votaram mais ou menos assim, Lula não ficou com 60% deles.
+            Nesse caso, a maior parte dos votos a mais de Lula veio dos novos votos válidos.</p>
+          <p>Exemplo: se os outros 10 candidatos tivessem 40% de seus eleitores votando em Lula, 40% em Flávio e 20% em branco, nulo ou faltando,
+            o saldo de novos votos válidos teria de ser cerca de 6,6 milhões, quase todo para Lula. É uma exigência forte. Os dados de comparecimento apontam nessa direção:
             a abstenção caiu de 21,08% para 19,22% no país, de 18,39% para 16,44% no Nordeste e de 19,97% para 16,71% na Bahia.
             No Amapá (17,41% → 25,47%) e no Maranhão (19,73% → 20,36%), onde a abstenção subiu, Flávio perdeu votos.</p>
-          <p>As pesquisas por eleitorado de cada candidato também têm limite: quem votou em um candidato de 2% ou 3% vira um grupo pequeno dentro da amostra, com margem de erro bem maior que a da pesquisa geral.</p>
-          <p class="verdict-line">A conta fecha sem exigir 100% da terceira via. A divisão exata não sai dos totais; ela se estima com dados por seção e com pesquisas feitas depois da eleição.</p>
+          <p>Pesquisas também têm limite aqui: quem votou num candidato que teve 2% ou 3% vira um grupo pequeno dentro da amostra, e a margem de erro desse grupo é bem maior que a da pesquisa geral.</p>
+          <p class="verdict-line">A conta fecha sem exigir 100% dos votos dos outros 10 candidatos. A divisão exata não pode ser calculada com os totais; ela só pode ser estimada com dados por seção e com pesquisas feitas depois da eleição.</p>
+        </div>
+      </article>
+
+      <article class="claim" id="cury-caiado">
+        <span class="tag">Cenário hipotético</span>
+        <h3>E se todos os eleitores de Cury e Caiado tivessem votado em Flávio?</h3>
+        <div class="body">
+          <p><b>Nesse caso, Flávio venceria.</b> Cury e Caiado tiveram juntos 6.053.717 votos no 1º turno (3.448.569 + 2.605.148). Na hipótese simples, e com o mesmo número de votos válidos do 2º turno real:</p>
+          <div class="ledger" role="table" aria-label="Cenário com todos os votos de Cury e Caiado para Flávio">
+            <div class="line" role="row"><span class="op"></span><span role="cell">Flávio no 1º turno</span><span class="v" role="cell">56.104.503</span></div>
+            <div class="line" role="row"><span class="op">+</span><span role="cell">Todos os votos de Cury e Caiado</span><span class="v" role="cell">6.053.717</span></div>
+            <div class="line sum" role="row"><span class="op">=</span><span role="cell">Flávio, no mínimo</span><span class="v" role="cell">62.158.220</span></div>
+            <div class="line" role="row" style="margin-top:10px"><span class="op"></span><span role="cell">Lula no 1º turno</span><span class="v" role="cell">53.879.538</span></div>
+            <div class="line" role="row"><span class="op">+</span><span role="cell">Todos os votos dos outros 8 candidatos</span><span class="v" role="cell">3.263.030</span></div>
+            <div class="line" role="row"><span class="op">+</span><span role="cell">Todos os novos votos válidos</span><span class="v" role="cell">4.781.485</span></div>
+            <div class="line sum" role="row"><span class="op">=</span><span role="cell">Lula, no máximo</span><span class="v" role="cell">61.924.053</span></div>
+          </div>
+          <p>Mesmo ficando com 100% de todo o resto, Lula perderia por pelo menos <span class="num">234.167</span> votos.</p>
+          <p><b>Mas esse cenário não aconteceu, e os próprios números oficiais mostram isso.</b> Entre os turnos, Flávio teve só 3.721.538 votos a mais, menos do que os 6.053.717 de Cury e Caiado.
+            Para que todos os eleitores de Cury e Caiado tivessem votado em Flávio, pelo menos 2.332.179 pessoas que votaram em Flávio no 1º turno teriam de ter deixado de votar nele no 2º.
+            Isso combina com as pesquisas: entre os eleitores de Cury, a Quaest mostrava mais votos para Lula (48%) do que para Flávio (33%). Apoio declarado por um candidato não transfere todos os votos dele.</p>
+          <p class="verdict-line">Se Cury e Caiado tivessem transferido 100% dos votos para Flávio, ele venceria. Os totais oficiais mostram que isso não aconteceu: Flávio cresceu menos do que esses dois candidatos tinham.</p>
         </div>
       </article>
 
@@ -790,7 +846,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
       <p class="eyebrow">Previsões</p>
       <h2>O modelo que "previu" a virada</h2>
       <p>Circula a informação de que um modelo matemático previu o resultado. Esse modelo existe, mas acertou <b>durante a apuração</b>, e não antes da eleição.
-        Antes da votação, todos os modelos e pesquisas públicos que encontrei davam Flávio como favorito.</p>
+        Antes da votação, todos os modelos e pesquisas públicos reunidos aqui davam Flávio como favorito.</p>
     </div>
 
     <figure>
@@ -854,7 +910,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
       <h3>Por que os modelos de antes da eleição apontaram o favorito errado</h3>
       <p>Eles aprendem com o passado, e o passado dizia duas coisas. Desde 1989, quem liderou o 1º turno sempre venceu o 2º. E o comparecimento costuma mudar pouco entre os turnos.
         Em 2026, o comparecimento subiu 2.960.239 pessoas, e esse foi justamente o fator que os modelos não tinham como prever.</p>
-      <p>Os modelos acertaram a condição para a virada. A equipe da FGV calculou que, se os eleitores dos finalistas mantivessem o voto, Lula precisaria de cerca de 62% dos votos dos eliminados.
+      <p>Os modelos acertaram a condição para a virada. A equipe da FGV calculou que, se os eleitores dos finalistas mantivessem o voto, Lula precisaria de cerca de 62% dos votos dos outros 10 candidatos.
         É a mesma conta da seção <a href="#limiar">Quanto Lula precisava</a> (61,94%). Antes do 2º turno, uma análise do BP Money chegou a argumentar que a maior parte dos ausentes morava em cidades onde Flávio tinha vencido,
         e que menos abstenção ajudaria Flávio. Na prática, a abstenção caiu mais no Nordeste, onde Lula é mais forte.</p>
     </div>
@@ -869,10 +925,10 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
       <h2>O que os dados não dizem</h2>
     </div>
     <ul class="list">
-      <li><b>Quem votou em quem.</b> O voto é secreto. Os totais mostram saldos, não a migração de cada pessoa. Frases como "os eleitores de Caiado foram para Flávio" são palpites, não dados do TSE.</li>
+      <li><b>Quem votou em quem.</b> O voto é secreto. Os totais mostram saldos, não a migração de cada pessoa. Frases como "os eleitores de Cury foram para Lula" são estimativas, não dados do TSE. O que os totais permitem é descartar alguns cenários, como o de todos os eleitores de Cury e Caiado votarem em Flávio.</li>
       <li><b>Por que as pessoas mudaram.</b> Campanha, alianças, transporte e clima político podem ter pesado. A Nexo registrou que a campanha de Lula mirou quem tinha faltado no 1º turno, e os números são compatíveis com isso, mas não provam sozinhos a causa.</li>
       <li><b>Comparações entre municípios.</b> Cruzar cidades (onde Cury foi bem, Lula cresceu mais?) ajuda a levantar hipóteses, mas tirar conclusões sobre indivíduos a partir de médias de grupos é um erro conhecido, chamado falácia ecológica.</li>
-      <li><b>Números estaduais incompletos.</b> Esta página mostra só os estados que consegui confirmar. Uma tabela completa das 27 UFs deve vir direto do TSE.</li>
+      <li><b>Números estaduais incompletos.</b> Esta página mostra só os estados confirmados em fonte segura. Uma tabela completa das 27 UFs deve vir direto do TSE.</li>
     </ul>
   </div>
 </section>
@@ -896,7 +952,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
           Queda relativa: <span class="num">2.960.239 ÷ 33.469.244 ≈ 8,8%</span>. "Caiu 1,86 p.p." e "caiu 8,8%" descrevem o mesmo fato.</p></div>
       </details>
       <details>
-        <summary>3. Inequação · Em 2022, Lula teve 57.259.504 votos e Bolsonaro 51.072.345 no 1º turno. Juntos, os dois ganharam 10.220.504 votos no 2º turno. Que fração mínima desses votos Bolsonaro precisava para virar?</summary>
+        <summary>3. Inequação · Em 2022, Lula teve 57.259.504 votos e Bolsonaro 51.072.345 no 1º turno. No 2º turno, os dois tiveram juntos 10.220.504 votos a mais. Que parte mínima desses votos a mais Bolsonaro precisava para virar?</summary>
         <div><p><span class="num">51.072.345 + 10.220.504·x &gt; 57.259.504 + 10.220.504·(1 − x)</span></p>
           <p><span class="num">20.441.008·x &gt; 16.407.663 → x &gt; 0,8027</span>. Ele precisava de mais de <b>80,27%</b> e obteve 69,80%. Lula venceu.</p></div>
       </details>
@@ -906,7 +962,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
       </details>
       <details>
         <summary>5. Sistemas · Por que não dá para descobrir, só com os totais, quantos eleitores de Augusto Cury votaram em Lula?</summary>
-        <div><p>Temos poucas equações (o ganho de Lula, o ganho de Flávio, a variação de brancos, nulos e abstenção) e muitas incógnitas: quanto de cada origem foi para cada destino,
+        <div><p>Temos poucas equações (votos a mais de Lula, votos a mais de Flávio, variação de brancos, nulos e abstenção) e muitas incógnitas: quanto de cada origem foi para cada destino,
           e ainda as trocas entre eleitores de Lula e de Flávio. Um sistema com mais incógnitas que equações tem <b>infinitas soluções</b>.
           O simulador acima mostra isso: combinações diferentes chegam ao mesmo placar.</p></div>
       </details>
@@ -930,7 +986,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
       <li><b>Origem dos números.</b> Os totais nacionais vêm da totalização do TSE com 100% das seções. O ambiente em que esta página foi feita não tinha acesso direto aos servidores do TSE
         (sig.tse.jus.br e resultados.tse.jus.br), então os números foram coletados de notícias do próprio TSE e de veículos que reproduzem a totalização, e conferidos entre si.</li>
       <li><b>Conferência por soma.</b> 1º turno: os 12 candidatos somam 119.300.788 válidos, e 119.300.788 + 2.300.798 + 3.674.249 = 125.275.835 (comparecimento).
-        2º turno: 64.256.232 + 59.826.041 + 1.430.496 + 2.723.305 = 128.236.074. Origens e destinos dos votos novos fecham em 14.098.232.</li>
+        2º turno: 64.256.232 + 59.826.041 + 1.430.496 + 2.723.305 = 128.236.074. De onde vieram e para quem foram os votos a mais: os dois lados somam 14.098.232.</li>
       <li><b>Eleitorado.</b> O TSE divulgou 158.745.463 eleitores aptos antes da eleição. O número que fecha comparecimento + abstenção nos dois turnos é 158.745.079, uma diferença de 384 pessoas. Os percentuais não mudam.</li>
       <li><b>Pequenas divergências.</b> Parciais da apuração em Minas mostravam 50,40% para Lula; o final é 50,43%. Votos depois das 17h: 34.393 (TSE) ou 35.521 (Gazeta do Povo). Nenhuma delas muda as conclusões.</li>
       <li><b>Confira você.</b> Os dados oficiais estão no <a href="https://sig.tse.jus.br/ords/dwapr/seai/r/sig-eleicao/home" rel="noopener" target="_blank">SIG Eleição do TSE</a>
@@ -1051,7 +1107,8 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
     real: [72.885743, 27.114257, 4.781485, 75],
     meio: [50, 50, 4.78, 50],
     semnovos: [73.6, 26.4, 0, 50],
-    terceira: [40, 40, 6.644834, 100]
+    terceira: [40, 40, 6.644834, 100],
+    curycaiado: [35.023276, 64.976724, 4.781485, 100]
   };
   function clamp(changed) {
     var va = parseFloat(a.value), vb = parseFloat(b.value);
@@ -1082,8 +1139,8 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
     document.getElementById("sim-bar-f").style.width = ((1 - sl) * 100) + "%";
     var resto = Math.max(0, 1 - pa - pb);
     document.getElementById("sim-note").textContent =
-      "Dos eliminados, " + pct1.format(resto * 100) + "% (" + fmt.format(Math.round(ELIM * resto)) +
-      " eleitores) não escolheram nenhum dos dois. Resultado real: Lula 64.256.232 (51,79%) × Flávio 59.826.041 (48,21%).";
+      "Dos eleitores dos outros 10 candidatos, " + pct1.format(resto * 100) + "% (" + fmt.format(Math.round(ELIM * resto)) +
+      " pessoas) não votaram em nenhum dos dois. Resultado real: Lula 64.256.232 (51,79%) × Flávio 59.826.041 (48,21%).";
   }
   [a, b, c, d].forEach(function (el) {
     el.addEventListener("input", function () { clamp(el); update(); });
