@@ -543,6 +543,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
             <button type="button" data-preset="real">Um cenário que reproduz o resultado</button>
             <button type="button" data-preset="meio">Tudo dividido ao meio</button>
             <button type="button" data-preset="semnovos">Sem eleitores novos</button>
+            <button type="button" data-preset="terceira">Terceira via 40% × 40%</button>
           </div>
         </div>
       </figure>
@@ -563,11 +564,13 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
             <dt>Lula</dt><dd id="sim-l"></dd>
             <dt>Flávio</dt><dd id="sim-f"></dd>
             <dt>Diferença</dt><dd id="sim-diff"></dd>
+            <dt>Votos válidos</dt><dd id="sim-v"></dd>
           </dl>
           <p class="small" id="sim-note"></p>
         </div>
       </figure>
     </div>
+    <p class="small prose">O botão "Terceira via 40% × 40%" mostra o que esse cenário exige: para chegar ao total real de votos válidos, entram 6,64 milhões de eleitores novos, e todos precisam votar em Lula.</p>
     <p class="small prose">O botão "Um cenário que reproduz o resultado" usa cerca de 72,9% dos eliminados para Lula, 4.781.485 eleitores novos e 75% deles para Lula, e chega ao placar oficial voto a voto. É só uma das infinitas combinações que chegam ao placar oficial. Ninguém sabe a combinação verdadeira.</p>
   </div>
 </section>
@@ -689,6 +692,41 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
           <p>Vídeos que viralizaram dizem que os +10.376.694 votos de Lula não cabem nos 9.316.747 votos dos eliminados. A conta esquece duas fontes:
             1.821.246 brancos e nulos a menos e 2.960.239 eleitores a mais. Com elas, a soma bate no voto exato (veja <a href="#conta">A conta</a>). O Poder360 classificou essa teoria como imprecisa.</p>
           <p class="verdict-line">É possível e a conta fecha: 9.316.747 + 1.821.246 + 2.960.239 = 14.098.232 = 10.376.694 + 3.721.538.</p>
+        </div>
+      </article>
+
+      <article class="claim" id="terceira-via">
+        <span class="tag">Terceira via</span>
+        <h3>Lula teria precisado de todos os votos da terceira via?</h3>
+        <div class="body">
+          <p><b>Não.</b> A frase compara só dois números: os 10.376.694 votos que Lula ganhou e os 9.316.747 votos dos dez eliminados.
+            Ela esquece as 4.781.485 pessoas que não deram voto válido no 1º turno (faltaram, anularam ou votaram em branco) e deram no 2º.</p>
+          <p><b>A faixa possível.</b> No modelo mais rígido, todo eleitor de Lula e de Flávio repete o voto e todo eleitor da terceira via vota de novo.
+            Nesse modelo, Lula precisou de algo <b>entre 60,1% e 100%</b> dos votos da terceira via:</p>
+          <ul class="list">
+            <li>60,1%, se todos os 4.781.485 eleitores novos votaram nele;</li>
+            <li>100%, só se ele tivesse ficado com apenas 22,2% dos eleitores novos.</li>
+          </ul>
+          <div class="scale-compare" role="img" aria-label="Faixa da fatia da terceira via compatível com o resultado no modelo rígido: de 60,1% a 100%.">
+            <div class="lbl"><span>Fatia da terceira via que foi para Lula, no modelo rígido</span><span class="num">60,1% a 100%</span></div>
+            <div class="meter-track" style="margin-top:22px">
+              <div class="meter-fill" style="left:60.06%;width:39.94%;background:var(--lula);opacity:0.55"></div>
+              <div class="meter-need" style="left:60.06%"><span>60,1%</span></div>
+            </div>
+            <div class="meter-scale" aria-hidden="true"><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div>
+          </div>
+          <p>Em toda eleição há gente que vota no 1º turno e falta no 2º, e gente que faz o contrário. Admitindo essa troca, a fatia necessária da terceira via pode ficar abaixo de 60%.
+            Há ainda quem votou em Flávio no 1º turno e em Lula no 2º: cada um desses muda a diferença em 2 votos. Os totais não mostram quantos foram.</p>
+          <p><b>O que merece atenção.</b> Caiado, Zema e Cury declararam apoio a Flávio no 2º turno (Cury com condições), e Renan Santos liberou os eleitores.
+            Na pesquisa Quaest de 21/10, entre eleitores de Cury, 48% diziam votar em Lula e 33% em Flávio; entre os de Renan, 51% em Flávio e 25% em Lula.
+            Na rodada de 14/10, entre os de Caiado, eram 42% para Flávio e 23% para Lula. Se a terceira via se dividiu mais ou menos assim, Lula não levou 60% dela.
+            Nesse caso, a maior parte do crescimento dele veio de quem não tinha dado voto válido no 1º turno.</p>
+          <p>Um exemplo: se a terceira via tivesse ido 40% para Lula, 40% para Flávio e 20% para branco, nulo ou abstenção, o saldo de quem entrou para votar no 2º turno,
+            cerca de 6,6 milhões, teria ido praticamente todo para Lula. É uma exigência forte. Os dados de comparecimento apontam nessa direção:
+            a abstenção caiu de 21,08% para 19,22% no país, de 18,39% para 16,44% no Nordeste e de 19,97% para 16,71% na Bahia.
+            No Amapá (17,41% → 25,47%) e no Maranhão (19,73% → 20,36%), onde a abstenção subiu, Flávio perdeu votos.</p>
+          <p>As pesquisas por eleitorado de cada candidato também têm limite: quem votou em um candidato de 2% ou 3% vira um grupo pequeno dentro da amostra, com margem de erro bem maior que a da pesquisa geral.</p>
+          <p class="verdict-line">A conta fecha sem exigir 100% da terceira via. A divisão exata não sai dos totais; ela se estima com dados por seção e com pesquisas feitas depois da eleição.</p>
         </div>
       </article>
 
@@ -828,6 +866,13 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
       <li><a href="https://www.infomoney.com.br/politica/flavio-nao-reconhece-resultado-da-eleicao-e-diz-que-pedira-anulacao-ao-tse/" target="_blank" rel="noopener">InfoMoney · Flávio não reconhece resultado</a></li>
       <li><a href="https://www.opovo.com.br/noticias/mundo/2026/10/28/amp/flavio-altera-caminho-para-buscar-reversao-da-derrota-eleitoral.html" target="_blank" rel="noopener">O Povo · Flávio altera caminho</a></li>
       <li><a href="https://www.metropoles.com/mundo/em-carta-flavio-se-declara-verdadeiro-presidente-eleito-do-brasil" target="_blank" rel="noopener">Metrópoles · Carta de Flávio</a></li>
+      <li><a href="https://acritica.net/eleicoes-2026/caiado-zema-e-cury-apoiam-flavio-no-2o-turno-renan-santos-libera-eleitores/" target="_blank" rel="noopener">A Crítica · Caiado, Zema e Cury apoiam Flávio; Renan libera eleitores</a></li>
+      <li><a href="https://www.cnnbrasil.com.br/eleicoes/veja-os-partidos-que-declararam-apoio-a-flavio-bolsonaro-e-a-lula/" target="_blank" rel="noopener">CNN Brasil · Partidos que declararam apoio no 2º turno</a></li>
+      <li><a href="https://exame.com/brasil/lula-ou-flavio-quaest-mostra-para-onde-vao-os-votos-de-cury-caiado-e-renan-santos/" target="_blank" rel="noopener">Exame · Quaest: para onde vão os votos de Cury, Caiado e Renan (14/10)</a></li>
+      <li><a href="https://exame.com/brasil/para-onde-vao-os-votos-de-cury-caiado-e-renan-no-2o-turno-pesquisa-quaest-responde/" target="_blank" rel="noopener">Exame · Quaest: votos de Cury e Renan (21/10)</a></li>
+      <li><a href="https://www.bnews.com.br/noticias/politica/abstencao-no-2-turno-tem-queda-recorde-e-alcanca-o-menor-patamar-em-20-anos.html" target="_blank" rel="noopener">BNews · Abstenção no 2º turno por estado</a></li>
+      <li><a href="https://www.cartacapital.com.br/politica/os-fatores-que-levaram-lula-a-vitoria-no-segundo-turno/" target="_blank" rel="noopener">CartaCapital · Abstenção no Nordeste</a></li>
+      <li><a href="https://ne9.com.br/queda-da-abstencao-marca-o-segundo-turno-de-2026-no-nordeste/" target="_blank" rel="noopener">NE9 · Abstenção no Maranhão e no Piauí</a></li>
     </ol>
   </div>
 </section>
@@ -889,7 +934,8 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
   var presets = {
     real: [72.885743, 27.114257, 4.781485, 75],
     meio: [50, 50, 4.78, 50],
-    semnovos: [73.6, 26.4, 0, 50]
+    semnovos: [73.6, 26.4, 0, 50],
+    terceira: [40, 40, 6.644834, 100]
   };
   function clamp(changed) {
     var va = parseFloat(a.value), vb = parseFloat(b.value);
@@ -911,6 +957,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
     document.getElementById("sim-f").textContent = fmt.format(F) + " (" + pct.format((1 - sl) * 100) + "%)";
     var diff = Math.abs(L - F);
     document.getElementById("sim-diff").textContent = fmt.format(diff);
+    document.getElementById("sim-v").textContent = fmt.format(V) + (Math.abs(V - 124082273) < 10000 ? " (igual ao real)" : " (real: 124.082.273)");
     var v = document.getElementById("sim-verdict");
     if (L > F) v.textContent = "Lula vence por " + fmt.format(diff) + " votos";
     else if (F > L) v.textContent = "Flávio vence por " + fmt.format(diff) + " votos";
