@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=IBM+Plex+Mono:wght@400;500;600&family=Literata:opsz,wght@7..72,400..700&display=swap">
 <style>
-/* Layout: relatório didático em coluna única de leitura (~68ch), figuras mais largas, nav de seções fixa no topo.
+/* Layout: relatório em coluna única de leitura (~68ch), figuras mais largas, nav de seções fixa no topo.
    Cores dos candidatos vêm da paleta categórica validada (laranja = Lula, azul = Flávio); fontes dos votos em aqua/amarelo/magenta. */
 :root {
   --bg: #f3f4f7;
@@ -279,12 +279,8 @@ button:hover { border-color: var(--ink); }
 .scale-compare .bar { height: 20px; border-radius: 0 4px 4px 0; }
 .status { background: var(--surface); border: 1px solid var(--rule); border-left: 3px solid var(--ink); border-radius: 6px; padding: 16px 18px; max-width: 820px; display: grid; gap: 8px; }
 
-/* Limites, exercícios, fontes */
+/* Limites, fontes */
 .list { margin: 0; padding-left: 1.2em; display: grid; gap: 10px; max-width: var(--measure); }
-details { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: 14px 18px; max-width: 820px; }
-details + details { margin-top: 10px; }
-summary { cursor: pointer; font-family: var(--font-display); font-weight: 600; line-height: 1.4; }
-details > div { margin-top: 10px; display: grid; gap: 8px; }
 .sources { columns: 2 22rem; column-gap: 32px; font-size: 0.92rem; padding-left: 1.2em; margin: 0; }
 .sources li { break-inside: avoid; margin-bottom: 8px; }
 
@@ -365,9 +361,9 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
       <li><a href="#simulador">Simulador</a></li>
       <li><a href="#estados">Estados</a></li>
       <li><a href="#duvidas">Dúvidas</a></li>
+      <li><a href="#conferir">Como conferir</a></li>
       <li><a href="#modelos">Modelos</a></li>
       <li><a href="#limites">Limites</a></li>
-      <li><a href="#exercicios">Exercícios</a></li>
       <li><a href="#fontes">Fontes</a></li>
     </ol>
   </div>
@@ -839,6 +835,41 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
   </div>
 </section>
 
+<!-- COMO CONFERIR -->
+<section id="conferir">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Verificação</p>
+      <h2>Como conferir as urnas você mesmo</h2>
+      <p>Qualquer pessoa pode conferir se os votos de uma seção chegaram certos ao total do TSE. Não é preciso ser fiscal, mesário nem trabalhar na Justiça Eleitoral.</p>
+    </div>
+    <ol class="list">
+      <li><b>O boletim de urna.</b> Quando a votação termina, cada urna imprime o boletim de urna (BU), com os votos daquela seção. Uma via fica afixada na própria seção, e os fiscais dos partidos podem pedir cópias.</li>
+      <li><b>Ler o QR Code.</b> Instale o aplicativo oficial Boletim na Mão (Android e iOS) ou use o e-Título, no menu "Mais opções". Aponte a câmera para o QR Code impresso no BU. A leitura funciona sem internet, e os dados ficam guardados no celular.</li>
+      <li><b>Comparar com o TSE.</b> Abra resultados.tse.jus.br ou o aplicativo Resultados e procure a mesma seção (estado, município, zona e seção). O site mostra o BU de cada seção, e os números precisam ser iguais aos do papel.</li>
+      <li><b>Somar.</b> O total do país é a soma dos BUs de todas as seções. Como todos os BUs são públicos, qualquer partido, jornalista ou pesquisador pode refazer a soma e comparar com o total divulgado.</li>
+    </ol>
+
+    <div class="two">
+      <div class="note">
+        <h3>Teste de integridade no 2º turno de 2026</h3>
+        <p>No dia da eleição, urnas sorteadas ou indicadas por entidades fiscalizadoras saem das seções e recebem votos de cédulas de papel preenchidas por representantes dos partidos. No fim, o resultado da urna é comparado voto a voto com o papel.</p>
+        <p>No 2º turno, o teste terminou sem divergências no TSE (389 votos conferidos) e nos tribunais regionais que divulgaram o resultado, como São Paulo (33 urnas) e Mato Grosso (20 urnas). Segundo o TSE, nenhum partido registrou em ata contestação sobre a confiabilidade da urna. Segundo o TRE-MT, o teste nunca encontrou divergência desde 2002.</p>
+      </div>
+      <div class="note">
+        <h3>Na véspera da votação</h3>
+        <p>Em cerimônia pública, o TSE conferiu as assinaturas digitais dos programas de transmissão e de totalização que seriam usados no 2º turno, para confirmar que eram os programas autênticos.</p>
+      </div>
+    </div>
+
+    <div class="status">
+      <p class="eyebrow">O que conta como prova</p>
+      <p>Uma prova concreta de erro ou fraude é um BU, fotografado na seção ou lido pelo QR Code, com números diferentes do BU da mesma seção no site do TSE. Essa comparação é objetiva, e qualquer pessoa pode fazer.
+        Diferença entre pesquisa e resultado, seções com votação concentrada num candidato ou a frase "a conta não fecha" não provam fraude por si sós (veja <a href="#duvidas">Dúvidas</a>).</p>
+    </div>
+  </div>
+</section>
+
 <!-- MODELOS -->
 <section id="modelos">
   <div class="wrap">
@@ -933,48 +964,6 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
   </div>
 </section>
 
-<!-- EXERCÍCIOS -->
-<section id="exercicios">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Ensino fundamental II e ensino médio</p>
-      <h2>Para a sala de aula</h2>
-      <p>Seis exercícios com os números reais. Clique para ver a resolução.</p>
-    </div>
-    <div>
-      <details>
-        <summary>1. Porcentagem · Lula teve 64.256.232 votos de um total de 124.082.273 votos válidos. Qual foi o percentual dele?</summary>
-        <div><p><span class="num">64.256.232 ÷ 124.082.273 = 0,5179</span>, ou seja, <b>51,79%</b>. Brancos e nulos não entram na conta porque não são votos válidos.</p></div>
-      </details>
-      <details>
-        <summary>2. Ponto percentual × porcentagem · A abstenção caiu de 21,08% para 19,22%. Quantos pontos percentuais caiu? E qual foi a queda relativa?</summary>
-        <div><p>Queda de <b>1,86 ponto percentual</b> (21,08 − 19,22). Em número de pessoas: 33.469.244 → 30.509.005, menos 2.960.239.
-          Queda relativa: <span class="num">2.960.239 ÷ 33.469.244 ≈ 8,8%</span>. "Caiu 1,86 p.p." e "caiu 8,8%" descrevem o mesmo fato.</p></div>
-      </details>
-      <details>
-        <summary>3. Inequação · Em 2022, Lula teve 57.259.504 votos e Bolsonaro 51.072.345 no 1º turno. No 2º turno, os dois tiveram juntos 10.220.504 votos a mais. Que parte mínima desses votos a mais Bolsonaro precisava para virar?</summary>
-        <div><p><span class="num">51.072.345 + 10.220.504·x &gt; 57.259.504 + 10.220.504·(1 − x)</span></p>
-          <p><span class="num">20.441.008·x &gt; 16.407.663 → x &gt; 0,8027</span>. Ele precisava de mais de <b>80,27%</b> e obteve 69,80%. Lula venceu.</p></div>
-      </details>
-      <details>
-        <summary>4. Razão · Quantas vezes a vantagem de Lula (4.430.191) é maior que o total de votos registrados depois das 17h (34.393)?</summary>
-        <div><p><span class="num">4.430.191 ÷ 34.393 ≈ 128,8</span>. A vantagem é cerca de <b>129 vezes</b> maior.</p></div>
-      </details>
-      <details>
-        <summary>5. Sistemas · Por que não dá para descobrir, só com os totais, quantos eleitores de Augusto Cury votaram em Lula?</summary>
-        <div><p>Temos poucas equações (votos a mais de Lula, votos a mais de Flávio, variação de brancos, nulos e abstenção) e muitas incógnitas: quanto de cada origem foi para cada destino,
-          e ainda as trocas entre eleitores de Lula e de Flávio. Um sistema com mais incógnitas que equações tem <b>infinitas soluções</b>.
-          O simulador acima mostra isso: combinações diferentes chegam ao mesmo placar.</p></div>
-      </details>
-      <details>
-        <summary>6. Probabilidade · Um modelo dava 20% de chance a Lula. Se em cinco eleições independentes um candidato tivesse 20% de chance em cada, qual a probabilidade de ele vencer pelo menos uma?</summary>
-        <div><p>A chance de perder as cinco é <span class="num">0,8⁵ = 0,32768</span>. Então a chance de vencer pelo menos uma é <span class="num">1 − 0,32768 = 0,67232</span>, cerca de <b>67%</b>.
-          Uma "zebra" de 20% é rara numa eleição, mas comum quando se olham várias.</p></div>
-      </details>
-    </div>
-  </div>
-</section>
-
 <!-- FONTES -->
 <section id="fontes">
   <div class="wrap">
@@ -1045,6 +1034,13 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
       <li><a href="https://www.correio24horas.com.br/eleicoes/como-um-pesquisador-brasileiro-conseguiu-cravar-reeleicao-de-lula-com-apenas-242-das-urnas-apuradas-1026" target="_blank" rel="noopener">Correio · Pesquisador cravou a reeleição com 2,42% das urnas</a></li>
       <li><a href="https://www.brasil247.com/brasil/estadao-projeta-vitoria-do-presidente-lula-com-514-dos-votos/" target="_blank" rel="noopener">Brasil 247 · Estadão projeta Lula com 51,4%</a></li>
       <li><a href="https://timesbrasil.com.br/eleicoes-2026/projecao-lula-vitoria-4-urnas-apuradas/" target="_blank" rel="noopener">Times Brasil · Modelos anteciparam o resultado com 4% das urnas</a></li>
+      <li><a href="https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/teste-de-integridade-do-2o-turno-no-tse-confirma-correspondencia-entre-cedulas-e-votos-nas-urnas" target="_blank" rel="noopener">TSE · Teste de integridade do 2º turno confirma correspondência entre cédulas e votos</a></li>
+      <li><a href="https://www.tre-sp.jus.br/comunicacao/noticias/2026/Outubro/teste-de-integridade-das-urnas-no-2o-turno-e-concluido-sem-divergencias-em-sao-paulo" target="_blank" rel="noopener">TRE-SP · Teste de integridade sem divergências em São Paulo</a></li>
+      <li><a href="https://www.tre-mt.jus.br/comunicacao/noticias/2026/Outubro/teste-de-integridade-reforca-seguranca-e-confiabilidade-da-urna-eletronica-no-2o-turno" target="_blank" rel="noopener">TRE-MT · Teste de integridade no 2º turno</a></li>
+      <li><a href="https://www.tse.jus.br/comunicacao/noticias/2026/Outubro/tse-verifica-os-sistemas-eleitorais-na-vespera-do-2o-turno-das-eleicoes-2026" target="_blank" rel="noopener">TSE · Verificação dos sistemas na véspera do 2º turno</a></li>
+      <li><a href="https://www.tre-pr.jus.br/comunicacao/noticias/2026/Outubro/boletim-de-urna-permite-conferir-resultado-de-cada-secao-eleitoral" target="_blank" rel="noopener">TRE-PR · Boletim de urna permite conferir cada seção</a></li>
+      <li><a href="https://agenciabrasil.ebc.com.br/politica/noticia/2026-10/boletim-de-urna-permite-conferir-totalizacao-dos-votos-entenda" target="_blank" rel="noopener">Agência Brasil · Boletim de urna permite conferir a totalização</a></li>
+      <li><a href="https://exame.com/brasil/quer-conferir-os-votos-da-sua-urna-veja-o-passo-a-passo-pelo-celular/" target="_blank" rel="noopener">Exame · Passo a passo para conferir os votos da sua urna</a></li>
     </ol>
   </div>
 </section>
@@ -1053,7 +1049,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
 
 <footer>
   <div class="wrap">
-    <span>Dados conferidos em 28 de outubro de 2026. Material de uso didático.</span>
+    <span>Dados conferidos em 28 de outubro de 2026. Material informativo, feito com dados públicos.</span>
     <span>Não é um site oficial do TSE nem de nenhuma campanha.</span>
   </div>
 </footer>
