@@ -203,6 +203,7 @@ tbody tr.aux td { color: var(--ink-2); }
 
 .note { border-left: 3px solid var(--ink); padding: 2px 0 2px 14px; max-width: var(--measure); }
 .note h3 { font-size: 1rem; margin-bottom: 4px; }
+.note p + p { margin-top: 0.75em; }
 
 /* Simulador */
 .sim { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; align-items: start; }
@@ -237,6 +238,25 @@ button:hover { border-color: var(--ink); }
 .hbar .val { font-family: var(--font-data); font-size: 0.82rem; white-space: nowrap; color: var(--ink-2); }
 @media (max-width: 560px) { .hbar { grid-template-columns: 1fr; gap: 4px; } }
 .two { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 20px; align-items: start; }
+
+/* Modelos: gráfico de pontos */
+.dots { display: grid; }
+.dot-group { font-family: var(--font-display); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); padding-top: 12px; }
+.dot-row { display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr); gap: 12px; align-items: center; }
+.dot-row .name { font-family: var(--font-display); font-size: 0.88rem; line-height: 1.25; padding-block: 6px; }
+.dot-track { position: relative; height: 34px; }
+.dot-track .ref { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px solid var(--rule); }
+.dot-track .ref.half { border-left-color: var(--ink); }
+.dot-track .ref.real { border-left: 2px solid var(--lula); }
+.mk { position: absolute; top: 50%; width: 12px; height: 12px; transform: translate(-50%, -50%); border-radius: 50%; background: var(--lula); box-shadow: 0 0 0 2px var(--surface); }
+.mk.poll { background: var(--surface); border: 2px solid var(--lula); }
+.mk.live { border-radius: 2px; }
+.mk-val { position: absolute; top: 50%; transform: translate(12px, -50%); font-family: var(--font-data); font-size: 0.78rem; color: var(--ink-2); white-space: nowrap; }
+.dot-axis { position: relative; height: 18px; font-family: var(--font-data); font-size: 0.72rem; color: var(--muted); }
+.dot-axis span { position: absolute; transform: translateX(-50%); }
+.mk-key { position: relative; display: inline-block; width: 12px; height: 12px; }
+.mk-key .mk { left: 50%; }
+@media (max-width: 560px) { .dot-row { grid-template-columns: 1fr; gap: 0; } .dot-row .name { padding-block: 8px 0; } }
 @media (max-width: 860px) { .two { grid-template-columns: 1fr; } }
 
 /* Dúvidas */
@@ -337,6 +357,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
       <li><a href="#simulador">Simulador</a></li>
       <li><a href="#estados">Estados</a></li>
       <li><a href="#duvidas">Dúvidas</a></li>
+      <li><a href="#modelos">Modelos</a></li>
       <li><a href="#limites">Limites</a></li>
       <li><a href="#exercicios">Exercícios</a></li>
       <li><a href="#fontes">Fontes</a></li>
@@ -762,6 +783,84 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
   </div>
 </section>
 
+<!-- MODELOS -->
+<section id="modelos">
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">Previsões</p>
+      <h2>O modelo que "previu" a virada</h2>
+      <p>Circula a informação de que um modelo matemático previu o resultado. Esse modelo existe, mas acertou <b>durante a apuração</b>, e não antes da eleição.
+        Antes da votação, todos os modelos e pesquisas públicos que encontrei davam Flávio como favorito.</p>
+    </div>
+
+    <figure>
+      <p class="fig-title">Percentual de Lula nos votos válidos, segundo cada estimativa</p>
+      <div class="dots" role="img" aria-label="Modelos e pesquisas antes da eleição davam a Lula entre 47,8% e 49,5% dos votos válidos. O modelo do Estadão, com cerca de 2,4% das seções apuradas, projetou 51,4%. O resultado oficial foi 51,79%.">
+        <div class="dot-group">Antes da votação · modelos</div>
+        <div class="dot-row"><span class="name">FGV Cepesp, modelo RPA estrutural</span><span class="dot-track"><span class="ref half" style="left:50%"></span><span class="ref real" style="left:72.375%"></span><span class="mk" style="left:36.25%" data-tip="FGV Cepesp (estrutural): Lula 48,9% × Flávio 51,1%"></span><span class="mk-val" style="left:36.25%">48,9%</span></span></div>
+        <div class="dot-row"><span class="name">Labop/FESPSP</span><span class="dot-track"><span class="ref half" style="left:50%"></span><span class="ref real" style="left:72.375%"></span><span class="mk" style="left:22.5%" data-tip="Labop/FESPSP: Lula 47,8% × Flávio 52,2%"></span><span class="mk-val" style="left:22.5%">47,8%</span></span></div>
+        <div class="dot-group">Antes da votação · pesquisas de outubro</div>
+        <div class="dot-row"><span class="name">Datafolha</span><span class="dot-track"><span class="ref half" style="left:50%"></span><span class="ref real" style="left:72.375%"></span><span class="mk poll" style="left:25%" data-tip="Datafolha (outubro): Lula 48% × Flávio 52% dos válidos"></span><span class="mk-val" style="left:25%">48%</span></span></div>
+        <div class="dot-row"><span class="name">Gerp, 22 a 24/10</span><span class="dot-track"><span class="ref half" style="left:50%"></span><span class="ref real" style="left:72.375%"></span><span class="mk poll" style="left:25%" data-tip="Gerp (22 a 24/10): Lula 48% × Flávio 52% dos válidos"></span><span class="mk-val" style="left:25%">48%</span></span></div>
+        <div class="dot-row"><span class="name">BTG/Nexus, 23 e 24/10</span><span class="dot-track"><span class="ref half" style="left:50%"></span><span class="ref real" style="left:72.375%"></span><span class="mk poll" style="left:43.75%" data-tip="BTG/Nexus (23 e 24/10): Lula 49,5% × Flávio 50,5% dos válidos"></span><span class="mk-val" style="left:43.75%;transform:translate(calc(-100% - 12px),-50%)">49,5%</span></span></div>
+        <div class="dot-group">Durante a apuração</div>
+        <div class="dot-row"><span class="name">Modelo do Estadão, com ~2,4% das seções</span><span class="dot-track"><span class="ref half" style="left:50%"></span><span class="ref real" style="left:72.375%"></span><span class="mk live" style="left:67.5%" data-tip="Modelo de Rodrigo Mahlmeister (Estadão), noite de 25/10: Lula 51,4% × Flávio 48,6%"></span><span class="mk-val" style="left:67.5%;transform:translate(calc(-100% - 12px),-50%)">51,4%</span></span></div>
+        <div class="dot-row"><span class="name"><b>Resultado oficial do TSE</b></span><span class="dot-track"><span class="ref half" style="left:50%"></span><span class="ref real" style="left:72.375%"></span><span class="mk-val" style="left:72.375%;transform:translate(8px,-50%);color:var(--ink);font-weight:600">51,79%</span></span></div>
+        <div class="dot-row" aria-hidden="true"><span class="name"></span><span class="dot-axis"><span style="left:0%">46%</span><span style="left:25%">48%</span><span style="left:50%">50%</span><span style="left:75%">52%</span><span style="left:100%">54%</span></span></div>
+      </div>
+      <div class="legend" style="margin-top:12px">
+        <span class="key"><span class="mk-key"><span class="mk"></span></span>modelo antes da votação</span>
+        <span class="key"><span class="mk-key"><span class="mk poll"></span></span>pesquisa</span>
+        <span class="key"><span class="mk-key"><span class="mk live"></span></span>modelo durante a apuração</span>
+        <span class="key"><span class="sw" style="background:none;border-left:2px solid var(--lula);border-radius:0;width:2px"></span>resultado (51,79%)</span>
+        <span class="key"><span class="sw" style="background:none;border-left:1px solid var(--ink);border-radius:0;width:2px"></span>50%</span>
+      </div>
+      <figcaption>Tudo à esquerda da linha de 50% indicava vitória de Flávio. Pesquisas convertidas para votos válidos, como divulgadas.</figcaption>
+    </figure>
+
+    <div class="two">
+      <div class="scroll-x">
+        <table>
+          <caption>Chance de vitória de Lula calculada antes da votação</caption>
+          <thead><tr><th>Quem calculou</th><th class="r">Lula</th></tr></thead>
+          <tbody>
+            <tr><td>FGV Cepesp, modelo RPA estrutural<br><span class="small">Flávio 51,1% × Lula 48,9%</span></td><td class="r">29,5%</td></tr>
+            <tr><td>FGV Cepesp, versão híbrida<br><span class="small">inclui proximidade ideológica</span></td><td class="r">≈ 19%</td></tr>
+            <tr><td>Labop/FESPSP, com dados do Datafolha<br><span class="small">Flávio 52,2% × Lula 47,8%</span></td><td class="r">≈ 19%</td></tr>
+            <tr><td>BP Money, com 103 segundos turnos para governador<br><span class="small">29% se Flávio não tivesse recebido apoios</span></td><td class="r">18%</td></tr>
+            <tr><td>Polymarket, mercado de apostas, 21/10</td><td class="r">≈ 20%</td></tr>
+            <tr><td>Calculadora do Poder360</td><td class="r">"muito improvável"</td></tr>
+          </tbody>
+        </table>
+        <p class="small" style="margin-top:10px">Os estudos da FGV Cepesp e do Labop/FESPSP têm em comum o pesquisador Jairo Pimentel e podem ser versões do mesmo modelo. O Polymarket está proibido no Brasil desde abril de 2026.</p>
+      </div>
+      <div class="note">
+        <h3>Chance de 20% não é chance zero</h3>
+        <p>Um modelo que dava 20% a Lula não errou só porque Lula venceu. 20% é um pouco mais que a chance de tirar 6 num dado (16,7%).
+          Se o modelo é bom, de cada cinco candidatos a quem ele dá 20%, mais ou menos um vence. Um modelo se avalia em muitas eleições, não em uma só.</p>
+      </div>
+    </div>
+
+    <div class="prose">
+      <h3>Como funcionou o modelo da noite da apuração</h3>
+      <p>O modelo foi criado pelo pesquisador Rodrigo Mahlmeister e usado pelo Estadão. Com cerca de 2,4% das seções apuradas, ele projetou Lula com 51,4% dos votos válidos,
+        perto de uma hora e meia antes de o TSE confirmar a reeleição. O resultado final foi 51,79%.</p>
+      <p>A ideia é comparar cada seção com ela mesma. Quando uma seção é apurada, o modelo mede quanto Lula subiu ou caiu ali em relação ao 1º turno de 2026 e ao 2º turno de 2022,
+        e aplica essa variação às seções que ainda não foram contadas. Isso corrige um defeito da parcial bruta: as primeiras urnas não representam o país, porque algumas regiões apuram mais rápido que outras.
+        Plataformas como setup.news e Apuração Aberta mostraram o mesmo sinal com cerca de 4% das urnas.</p>
+    </div>
+
+    <div class="note">
+      <h3>Por que os modelos de antes da eleição apontaram o favorito errado</h3>
+      <p>Eles aprendem com o passado, e o passado dizia duas coisas. Desde 1989, quem liderou o 1º turno sempre venceu o 2º. E o comparecimento costuma mudar pouco entre os turnos.
+        Em 2026, o comparecimento subiu 2.960.239 pessoas, e esse foi justamente o fator que os modelos não tinham como prever.</p>
+      <p>Os modelos acertaram a condição para a virada. A equipe da FGV calculou que, se os eleitores dos finalistas mantivessem o voto, Lula precisaria de cerca de 62% dos votos dos eliminados.
+        É a mesma conta da seção <a href="#limiar">Quanto Lula precisava</a> (61,94%). Antes do 2º turno, uma análise do BP Money chegou a argumentar que a maior parte dos ausentes morava em cidades onde Flávio tinha vencido,
+        e que menos abstenção ajudaria Flávio. Na prática, a abstenção caiu mais no Nordeste, onde Lula é mais forte.</p>
+    </div>
+  </div>
+</section>
+
 <!-- LIMITES -->
 <section id="limites">
   <div class="wrap">
@@ -784,7 +883,7 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
     <div class="section-head">
       <p class="eyebrow">Ensino fundamental II e ensino médio</p>
       <h2>Para a sala de aula</h2>
-      <p>Cinco exercícios com os números reais. Clique para ver a resolução.</p>
+      <p>Seis exercícios com os números reais. Clique para ver a resolução.</p>
     </div>
     <div>
       <details>
@@ -810,6 +909,11 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
         <div><p>Temos poucas equações (o ganho de Lula, o ganho de Flávio, a variação de brancos, nulos e abstenção) e muitas incógnitas: quanto de cada origem foi para cada destino,
           e ainda as trocas entre eleitores de Lula e de Flávio. Um sistema com mais incógnitas que equações tem <b>infinitas soluções</b>.
           O simulador acima mostra isso: combinações diferentes chegam ao mesmo placar.</p></div>
+      </details>
+      <details>
+        <summary>6. Probabilidade · Um modelo dava 20% de chance a Lula. Se em cinco eleições independentes um candidato tivesse 20% de chance em cada, qual a probabilidade de ele vencer pelo menos uma?</summary>
+        <div><p>A chance de perder as cinco é <span class="num">0,8⁵ = 0,32768</span>. Então a chance de vencer pelo menos uma é <span class="num">1 − 0,32768 = 0,67232</span>, cerca de <b>67%</b>.
+          Uma "zebra" de 20% é rara numa eleição, mas comum quando se olham várias.</p></div>
       </details>
     </div>
   </div>
@@ -873,6 +977,18 @@ footer .wrap { padding-block: 24px 40px; font-family: var(--font-display); font-
       <li><a href="https://www.bnews.com.br/noticias/politica/abstencao-no-2-turno-tem-queda-recorde-e-alcanca-o-menor-patamar-em-20-anos.html" target="_blank" rel="noopener">BNews · Abstenção no 2º turno por estado</a></li>
       <li><a href="https://www.cartacapital.com.br/politica/os-fatores-que-levaram-lula-a-vitoria-no-segundo-turno/" target="_blank" rel="noopener">CartaCapital · Abstenção no Nordeste</a></li>
       <li><a href="https://ne9.com.br/queda-da-abstencao-marca-o-segundo-turno-de-2026-no-nordeste/" target="_blank" rel="noopener">NE9 · Abstenção no Maranhão e no Piauí</a></li>
+      <li><a href="https://eaesp.fgv.br/noticias/voto-voto-lula-contra-matematica-no-2o-turno" target="_blank" rel="noopener">FGV EAESP · Voto a voto: Lula contra a matemática no 2º turno</a></li>
+      <li><a href="https://fespsp.org.br/labop/datafolha-modelo-preditivo-labop-fespsp-segundo-turno-2026/" target="_blank" rel="noopener">FESPSP · Modelo do Labop para o 2º turno</a></li>
+      <li><a href="https://bpmoney.com.br/politica/a-matematica-do-segundo-turno/" target="_blank" rel="noopener">BP Money · Segundo turno: Lula tem chance de virar?</a></li>
+      <li><a href="https://www.poder360.com.br/poder-eleicoes-2026/virada-de-lula-e-improvavel-mostra-calculadora-do-poder360/" target="_blank" rel="noopener">Poder360 · Calculadora: virada de Lula é improvável</a></li>
+      <li><a href="https://terrabrasilnoticias.com/?p=498565" target="_blank" rel="noopener">Terra Brasil Notícias · Polymarket dá 80% a Flávio</a></li>
+      <li><a href="https://boca.com.br/politica/plataforma-polymarket-se-destaca-nas-eleicoes-brasileiras" target="_blank" rel="noopener">Boca · Polymarket nas eleições brasileiras</a></li>
+      <li><a href="https://www.gazetadopovo.com.br/eleicoes/2026/pesquisa-eleitoral-2026/gerp-presidente-outubro-2026-segundo-turno-2/" target="_blank" rel="noopener">Gazeta do Povo · Pesquisa Gerp do 2º turno</a></li>
+      <li><a href="https://jovempan.com.br/politica/pesquisas-eleitorais-x-urnas-o-que-mudou-no-segundo-turno-de-2026/" target="_blank" rel="noopener">Jovem Pan · Pesquisas × urnas no 2º turno</a></li>
+      <li><a href="https://mais.opovo.com.br/reportagens-especiais/resultado-presidente-eleicoes-2026/2026/10/28/quem-previu-a-vitoria-de-lula-matematica-antecipou-virada.html" target="_blank" rel="noopener">O Povo · Quem previu a vitória de Lula?</a></li>
+      <li><a href="https://www.correio24horas.com.br/eleicoes/como-um-pesquisador-brasileiro-conseguiu-cravar-reeleicao-de-lula-com-apenas-242-das-urnas-apuradas-1026" target="_blank" rel="noopener">Correio · Pesquisador cravou a reeleição com 2,42% das urnas</a></li>
+      <li><a href="https://www.brasil247.com/brasil/estadao-projeta-vitoria-do-presidente-lula-com-514-dos-votos/" target="_blank" rel="noopener">Brasil 247 · Estadão projeta Lula com 51,4%</a></li>
+      <li><a href="https://timesbrasil.com.br/eleicoes-2026/projecao-lula-vitoria-4-urnas-apuradas/" target="_blank" rel="noopener">Times Brasil · Modelos anteciparam o resultado com 4% das urnas</a></li>
     </ol>
   </div>
 </section>
