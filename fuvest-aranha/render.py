@@ -1299,7 +1299,7 @@ def render_chunk(args):
     surf, ctx = new_surface()
     cmd = ['ffmpeg', '-y', '-loglevel', 'error', '-f', 'rawvideo', '-pix_fmt', 'bgr0', '-s', f'{W}x{H}',
            '-r', str(FPS), '-i', '-', '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-tune', 'animation',
-           '-pix_fmt', 'yuv420p', '-threads', '2', path]
+           '-profile:v', 'high', '-level:v', '4.0', '-pix_fmt', 'yuv420p', '-threads', '2', path]
     proc = subprocess.Popen(cmd, stdin=subprocess.PIPE)
     for f in range(f0, f1):
         draw_at(ctx, f / FPS)
